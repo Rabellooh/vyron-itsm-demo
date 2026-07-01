@@ -109,7 +109,7 @@ A versão demo mantém a estrutura principal do sistema, mas remove qualquer inf
 
 ### Inventário de ativos
 
-![Inventário de ativos](docs/screenshots/inventario.png)
+![Inventário de ativos](docs/screenshots/inventário.png)
 
 ### Estoque TI
 
