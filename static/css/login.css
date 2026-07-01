@@ -1,0 +1,197 @@
+/* =========================================================
+LOGIN VYRON
+========================================================= */
+*{
+    box-sizing:border-box;
+}
+.login-body{
+    min-height:100vh;
+    width:100vw;
+    display:grid;
+    place-items:center;
+    padding:16px;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(56,213,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(47,109,246,.22), transparent 28%),
+        linear-gradient(135deg,#030712,#071426 45%,#081120);
+}
+
+.login-container{
+    width:100%;
+    max-width:400px;
+}
+
+.login-box{
+    width:100%;
+    padding:26px 28px;
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,.92),
+            rgba(30,41,59,.72)
+        );
+
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    backdrop-filter:var(--blur);
+}
+
+.login-topo{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.logo-tc{
+    width:100%;
+    max-width:165px;
+    display:block;
+    margin:0 auto 16px auto;
+    border-radius:16px;
+}
+
+.login-box h1{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:-1px;
+    line-height:1.05;
+    margin-bottom:8px;
+}
+
+.subtitulo-login{
+    color:var(--text-muted);
+    font-size:14px;
+    margin-bottom:4px;
+}
+
+.campo{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:16px;
+}
+
+.campo label{
+    font-size:14px;
+    font-weight:800;
+    color:#dbeafe;
+}
+
+.campo input{
+    width:100%;
+    height:48px;
+    border-radius:16px;
+
+    background:rgba(7,16,30,.72);
+    border:1px solid var(--border);
+
+    color:white;
+    padding:0 16px;
+    outline:none;
+
+    transition:var(--transition);
+}
+
+.campo input::placeholder{
+    color:#74839a;
+}
+
+.campo input:focus{
+    border-color:rgba(56,213,255,.45);
+    box-shadow:0 0 0 4px rgba(56,213,255,.08);
+}
+
+.btn-login{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--cyan)
+        );
+
+    color:white;
+    font-size:16px;
+    font-weight:900;
+
+    cursor:pointer;
+    transition:var(--transition);
+
+    margin-top:6px;
+}
+
+.btn-login:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 35px rgba(56,213,255,.22);
+}
+
+.erro-login{
+    padding:13px;
+    border-radius:16px;
+    margin-bottom:16px;
+
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.25);
+
+    color:#fca5a5;
+    font-weight:700;
+    text-align:center;
+}
+
+.login-footer{
+    margin-top:18px;
+    text-align:center;
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+/* RESPONSIVO */
+
+@media(max-height:720px){
+
+    .login-box{
+        padding:22px 26px;
+    }
+
+    .logo-tc{
+        max-width:145px;
+        margin-bottom:12px;
+    }
+
+    .login-topo{
+        margin-bottom:18px;
+    }
+
+    .login-box h1{
+        font-size:26px;
+    }
+
+    .campo{
+        margin-bottom:13px;
+    }
+
+    .campo input{
+        height:44px;
+    }
+
+    .btn-login{
+        height:46px;
+    }
+
+    .login-footer{
+        margin-top:14px;
+    }
+}
+.login-box h1{
+    color:white;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:-1px;
+    line-height:1.05;
+    margin-bottom:8px;
+}

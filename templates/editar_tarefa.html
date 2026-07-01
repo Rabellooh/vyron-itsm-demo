@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Editar Tarefa
+</h1>
+
+<div class="card">
+
+    <form method="POST" class="form-grid">
+
+        <input
+            type="text"
+            name="titulo"
+            value="{{ tarefa.titulo }}"
+            required
+        >
+
+        <input
+            type="text"
+            name="responsavel"
+            value="{{ tarefa.responsavel }}"
+        >
+
+        <input
+            type="text"
+            name="setor"
+            value="{{ tarefa.setor }}"
+        >
+
+        <input
+            type="date"
+            name="prazo"
+            value="{{ tarefa.prazo }}"
+        >
+
+        <select name="prioridade">
+
+            <option
+                value="baixa"
+                {% if tarefa.prioridade == "baixa" %}
+                selected
+                {% endif %}
+            >
+                Baixa
+            </option>
+
+            <option
+                value="media"
+                {% if tarefa.prioridade == "media" %}
+                selected
+                {% endif %}
+            >
+                Média
+            </option>
+
+            <option
+                value="alta"
+                {% if tarefa.prioridade == "alta" %}
+                selected
+                {% endif %}
+            >
+                Alta
+            </option>
+
+            <option
+                value="critica"
+                {% if tarefa.prioridade == "critica" %}
+                selected
+                {% endif %}
+            >
+                Crítica
+            </option>
+
+        </select>
+
+        <textarea name="descricao">{{ tarefa.descricao }}</textarea>
+
+        <button class="btn-primary">
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

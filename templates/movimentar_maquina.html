@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <h1 class="titulo">
+        Movimentar Equipamento
+    </h1>
+
+    <div class="card editar-posicao-card">
+
+        <form method="POST" class="form-editar-posicao">
+
+            <div class="form-group">
+
+                <label>
+                    Posição Origem
+                </label>
+
+                <select
+                    name="origem"
+                    required
+                >
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    {% for item in posicoes %}
+
+                    <option value="{{ item.posicao }}">
+
+                        {{ item.sala }} -
+                        {{ item.posicao }}
+                        {% if item.maquina %}
+                        | {{ item.maquina }}
+                        {% endif %}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Posição Destino
+                </label>
+
+                <select
+                    name="destino"
+                    required
+                >
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    {% for item in posicoes %}
+
+                    <option value="{{ item.posicao }}">
+
+                        {{ item.sala }} -
+                        {{ item.posicao }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="acoes-edicao">
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Movimentar
+                </button>
+
+                <a
+                    href="/"
+                    class="btn-dark"
+                >
+                    Voltar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

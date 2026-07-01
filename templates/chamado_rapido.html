@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Chamado Rápido • Vyron
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/variables.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}"
+    >
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <div class="login-topo">
+
+                <h1>
+                    Chamado Rápido
+                </h1>
+
+                <p class="subtitulo-login">
+                    Abertura emergencial sem login
+                </p>
+
+            </div>
+
+            <form method="POST">
+
+                <div class="campo">
+
+                    <label>
+                        Descreva o problema
+                    </label>
+
+                    <textarea
+                        name="descricao"
+                        placeholder="Ex: Computador não liga, internet caiu, impressora travada..."
+                        required
+                        style="min-height:120px;"
+                    ></textarea>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>
+                        Máquina / Local
+                    </label>
+
+                    <input
+                        type="text"
+                        name="maquina"
+                        placeholder="Ex: D19, Recepção, Sala Hunter..."
+                    >
+
+                </div>
+
+                <button class="btn-login">
+                    Abrir Chamado
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

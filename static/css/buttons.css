@@ -1,0 +1,296 @@
+.btn-primary,
+.btn-success,
+.btn-danger,
+.btn-warning,
+.btn-dark,
+.subnav-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:16px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-success{
+    background:var(--success);
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:#111827;
+}
+
+.btn-dark{
+
+    background:
+    rgba(30,41,59,.75);
+
+    color:white;
+
+    border:
+    1px solid var(--border);
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-danger:hover,
+.btn-warning:hover,
+.btn-dark:hover,
+.subnav-btn:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(1.05);
+}
+
+/* SUBTOPBAR */
+
+.subtopbar{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+    margin-top:18px;
+}
+
+.subnav-btn{
+
+    background:
+    rgba(30,41,59,.75);
+
+    color:white;
+
+    border:
+    1px solid var(--border);
+}
+.notificacao-btn{
+    position:relative;
+    width:38px;
+    height:38px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--border);
+    color:white;
+    text-decoration:none;
+    transition:var(--transition);
+}
+
+.notificacao-btn:hover{
+    background:rgba(56,213,255,.13);
+    border-color:rgba(56,213,255,.35);
+    transform:translateY(-1px);
+}
+
+.notificacao-badge{
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    min-width:20px;
+    height:20px;
+    padding:0 6px;
+    border-radius:999px;
+    background:#ef4444;
+    color:white;
+    font-size:11px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.notificacao-wrapper{
+    position:relative;
+}
+
+.notificacao-dropdown{
+    position:absolute;
+    top:48px;
+    right:0;
+    width:320px;
+    max-height:360px;
+    overflow-y:auto;
+    display:none;
+    z-index:999;
+
+    background:rgba(15,23,42,.96);
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    backdrop-filter:var(--blur);
+}
+
+.notificacao-dropdown.ativo{
+    display:block;
+}
+
+.notificacao-header{
+    padding:16px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.notificacao-item{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    padding:14px 16px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    color:white;
+}
+
+.notificacao-item span{
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+.notificacao-item.nao-lida{
+    background:rgba(56,213,255,.08);
+}
+
+.notificacao-vazia{
+    padding:18px;
+    color:var(--text-muted);
+}
+.notificacao-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.limpar-notificacoes{
+    color:#93c5fd;
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.notificacao-item-wrapper{
+    position:relative;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.notificacao-item-wrapper .notificacao-item{
+    padding-right:44px;
+    border-bottom:none;
+}
+
+.notificacao-excluir{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fca5a5;
+    background:rgba(239,68,68,.12);
+    text-decoration:none;
+    font-size:18px;
+    font-weight:900;
+}
+
+.notificacao-excluir:hover{
+    background:rgba(239,68,68,.22);
+}
+/* ==========================================
+AÇÕES - ATENDIMENTOS TI
+========================================== */
+
+.acoes-atendimento{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+    min-width:110px;
+}
+
+.btn-acao-editar{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:84px;
+    height:38px;
+    padding:0 16px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    color:#facc15;
+    background:rgba(250, 204, 21, 0.10);
+    border:1px solid rgba(250, 204, 21, 0.35);
+    transition:all .2s ease;
+}
+
+.btn-acao-editar:hover{
+    background:rgba(250, 204, 21, 0.18);
+    transform:translateY(-1px);
+}
+
+.btn-acao-excluir{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:16px;
+    color:#fb7185;
+    background:rgba(244, 63, 94, 0.10);
+    border:1px solid rgba(244, 63, 94, 0.25);
+    transition:all .2s ease;
+}
+
+.btn-acao-excluir:hover{
+    background:rgba(244, 63, 94, 0.18);
+    color:#ffffff;
+    transform:translateY(-1px);
+}
+
+@media (max-width: 768px){
+
+    .acoes-atendimento{
+        align-items:stretch;
+        min-width:unset;
+    }
+
+    .btn-acao-editar{
+        width:100%;
+    }
+
+    .btn-acao-excluir{
+        width:100%;
+    }
+
+}

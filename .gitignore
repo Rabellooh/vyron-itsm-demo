@@ -1,0 +1,36 @@
+# Ambiente
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+venv/
+venv312/
+.venv/
+
+# Uploads e dados locais
+uploads/
+backups/
+logs/
+*.log
+
+# Bancos/backups
+*.sql
+*.db
+*.sqlite
+*.dump
+
+# Planilhas reais
+*.xlsx
+*.xls
+*.csv
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Docker/local
+postgres_data/
+pgdata/

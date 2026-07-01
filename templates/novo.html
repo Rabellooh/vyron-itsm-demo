@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Novo Chamado
+</h1>
+
+<div class="card">
+
+<form method="POST" enctype="multipart/form-data">
+
+    <div class="form-row">
+
+        <div class="campo">
+
+            <label>
+                Setor
+            </label>
+
+            <input
+                type="text"
+                name="setor"
+                required
+            >
+
+        </div>
+
+        <div class="campo">
+
+            <label>
+                Máquina
+            </label>
+
+            <input
+                type="text"
+                name="maquina"
+                required
+            >
+
+        </div>
+
+    </div>
+
+    <div class="campo">
+
+        <label>
+            Descrição
+        </label>
+
+        <textarea
+            name="descricao"
+            rows="8"
+            required
+        ></textarea>
+
+    </div>
+
+    <div class="campo">
+
+        <label>
+            Print (Opcional)
+        </label>
+
+        <input
+            type="file"
+            name="arquivo"
+        >
+
+    </div>
+
+    <div class="acoes">
+
+        <button class="btn-primary">
+            Abrir Chamado
+        </button>
+
+        <a
+            href="/"
+            class="btn-warning"
+        >
+            Cancelar
+        </a>
+
+    </div>
+
+</form>
+
+</div>
+
+{% endblock %}

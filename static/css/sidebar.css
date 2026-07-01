@@ -1,0 +1,296 @@
+/* =========================================================
+SIDEBAR VYRON
+========================================================= */
+
+.sidebar{
+
+    width:290px;
+    min-width:290px;
+    height:100vh;
+
+    position:sticky;
+    top:0;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:20px;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(14,32,58,.92),
+        rgba(3,10,24,.96)
+    );
+
+    border-right:
+    1px solid var(--border);
+
+    backdrop-filter:var(--blur);
+
+    box-shadow:
+    18px 0 55px rgba(0,0,0,.32);
+
+    overflow:hidden;
+}
+
+/* =========================================================
+BRAND
+========================================================= */
+
+.brand-card{
+
+    min-height:155px;
+
+    border-radius:26px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.025)
+    );
+
+    border:
+    1px solid var(--border-strong);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    margin-bottom:28px;
+
+    box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 16px 35px rgba(0,0,0,.28),
+    0 0 28px rgba(56,213,255,.08);
+}
+
+.vyron-mark{
+
+    width:64px;
+    height:58px;
+
+    margin-bottom:6px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.vyron-mark span{
+
+    font-size:58px;
+    line-height:1;
+    font-weight:900;
+
+    color:transparent;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e90ff,
+        #38d5ff,
+        #60f0d6
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    text-shadow:
+    0 0 24px rgba(56,213,255,.28);
+
+    transform:skew(-8deg);
+}
+
+.brand-card h1{
+
+    font-size:26px;
+    font-weight:900;
+
+    letter-spacing:-1px;
+
+    margin-top:2px;
+}
+
+.brand-card p{
+
+    color:var(--text-muted);
+
+    font-size:13px;
+
+    margin-top:4px;
+}
+
+/* =========================================================
+MENU
+========================================================= */
+
+.menu{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:26px;
+
+    padding-right:4px;
+    padding-bottom:22px;
+}
+
+.menu::-webkit-scrollbar{
+    width:6px;
+}
+
+.menu::-webkit-scrollbar-thumb{
+    background:rgba(56,213,255,.24);
+    border-radius:999px;
+}
+
+.menu-grupo{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.menu-titulo{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:#8190a7;
+
+    letter-spacing:1.2px;
+
+    margin-bottom:8px;
+
+    padding-left:2px;
+}
+
+.menu-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:13px 12px;
+
+    border-radius:15px;
+
+    color:#e5edf8;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    border:1px solid transparent;
+}
+
+.menu-link:hover{
+
+    background:
+    rgba(255,255,255,.055);
+
+    border-color:
+    rgba(148,213,255,.16);
+
+    transform:translateX(4px);
+
+    color:white;
+}
+
+.menu-icone{
+
+    width:24px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    color:#9fb4ca;
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.sidebar-footer{
+
+    padding-top:16px;
+}
+
+.menu-sair{
+
+    width:100%;
+
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:800;
+
+    box-shadow:
+    0 18px 30px rgba(239,68,68,.24);
+
+    transition:var(--transition);
+}
+
+.menu-sair:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 22px 38px rgba(239,68,68,.34);
+}
+.brand-card{
+    min-height:150px;
+    padding:16px;
+    margin-bottom:24px;
+}
+
+.vyron-mark{
+    width:58px;
+    height:52px;
+    margin-bottom:4px;
+}
+
+.vyron-mark span{
+    font-size:54px;
+}
+
+.brand-card h1{
+    font-size:24px;
+}
+
+.brand-card p{
+    font-size:13px;
+}

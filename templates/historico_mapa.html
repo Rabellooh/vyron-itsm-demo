@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <h1 class="titulo">
+        Histórico de Movimentações
+    </h1>
+
+    <div class="card">
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Data</th>
+
+                        <th>Máquina</th>
+
+                        <th>Colaborador</th>
+
+                        <th>Origem</th>
+
+                        <th>Destino</th>
+
+                        <th>Responsável</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in historico %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ item.data_movimentacao.strftime('%d/%m/%Y %H:%M') }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.maquina or '-' }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.colaborador or '-' }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.origem }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.destino }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.usuario_responsavel }}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,314 @@
+/* =========================================================
+USUÁRIOS
+========================================================= */
+
+.usuarios-container{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.usuarios-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+}
+
+.form-busca{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.form-busca input{
+    min-width:280px;
+}
+
+.tabela-container{
+    width:100%;
+    overflow-x:auto;
+}
+
+.acoes-tabela{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-end;
+    min-width:140px;
+}
+
+.acoes-tabela a{
+    width:100%;
+    justify-content:center;
+}
+
+/* deixa os botões da tabela menores e mais alinhados */
+.acoes-tabela .btn-primary,
+.acoes-tabela .btn-success,
+.acoes-tabela .btn-danger,
+.acoes-tabela .btn-warning,
+.acoes-tabela .btn-dark{
+    min-height:38px;
+    padding:9px 13px;
+    border-radius:12px;
+    font-size:13px;
+}
+
+/* badges de usuário */
+.badge-user,
+.badge.ativo,
+.badge.inativo{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.badge-user{
+    background:rgba(56,213,255,.12);
+    color:#b9ecff;
+    border:1px solid rgba(56,213,255,.22);
+}
+
+.badge.ativo{
+    background:rgba(34,197,94,.13);
+    color:#86efac;
+    border:1px solid rgba(34,197,94,.22);
+}
+
+.badge.inativo{
+    background:rgba(239,68,68,.13);
+    color:#fca5a5;
+    border:1px solid rgba(239,68,68,.22);
+}
+
+/* card da tabela */
+.usuarios-container .card{
+    padding:26px;
+}
+
+/* espaçamento nas células */
+.usuarios-container table td,
+.usuarios-container table th{
+    vertical-align:middle;
+}
+
+/* evita texto colado */
+.usuarios-container td{
+    line-height:1.4;
+}
+
+/* responsivo */
+@media(max-width:900px){
+
+    .usuarios-topo{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .form-busca{
+        width:100%;
+    }
+
+    .form-busca input{
+        min-width:100%;
+    }
+
+    .acoes-tabela{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+.usuarios-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:22px;
+}
+
+.usuario-card{
+    padding:22px;
+    border-radius:26px;
+    background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(30,41,59,.72));
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.usuario-card-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.usuario-identidade{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.usuario-avatar{
+    width:52px;
+    height:52px;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--primary),var(--cyan));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    font-weight:900;
+}
+
+.usuario-identidade h3{
+    font-size:20px;
+    margin-bottom:4px;
+}
+
+.usuario-identidade span{
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+.usuario-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.usuario-info div{
+    padding:12px;
+    border-radius:16px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.usuario-info span{
+    display:block;
+    color:var(--text-muted);
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.usuario-info strong{
+    font-size:14px;
+    word-break:break-word;
+}
+
+.usuario-email{
+    grid-column:1/-1;
+}
+
+.usuario-card-acoes{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.usuario-card-acoes a{
+    flex:1;
+    min-width:95px;
+}
+
+.usuarios-acoes-topo{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.form-importar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.vazio-card{
+    text-align:center;
+    padding:40px;
+}
+
+@media(max-width:700px){
+    .usuario-info{
+        grid-template-columns:1fr;
+    }
+
+    .usuario-card-acoes{
+        flex-direction:column;
+    }
+}
+/* =========================================================
+AJUSTES TOPO USUÁRIOS
+========================================================= */
+
+.usuarios-acoes-topo{
+    display:grid;
+    grid-template-columns:auto minmax(280px, 480px) auto;
+    gap:12px;
+    align-items:center;
+    margin-top:18px;
+}
+
+.form-importar{
+    display:contents;
+}
+
+.form-importar input[type="file"]{
+    height:46px;
+    padding:10px 14px;
+    border-radius:16px;
+    background:rgba(15,23,42,.85);
+    border:1px solid var(--border);
+    color:var(--text-muted);
+}
+
+.form-importar button{
+    height:46px;
+}
+
+/* BUSCA */
+
+.form-busca{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    gap:12px;
+    align-items:center;
+}
+
+.form-busca input{
+    width:100%;
+}
+
+/* CARDS DE RESUMO MAIS PRÓXIMOS */
+
+.usuarios-container .stats-grid{
+    margin-top:24px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    .usuarios-acoes-topo{
+        grid-template-columns:1fr;
+    }
+
+    .form-importar{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .form-busca{
+        grid-template-columns:1fr;
+    }
+}

@@ -1,0 +1,751 @@
+/* =========================================================
+DASHBOARD
+========================================================= */
+
+.dashboard-header{
+
+    margin-bottom:22px;
+}
+
+.titulo-dashboard{
+
+    font-size:52px;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+
+    line-height:1;
+
+    margin-bottom:10px;
+}
+
+.subtitulo-dashboard{
+
+    color:var(--text-muted);
+
+    font-size:18px;
+}
+
+/* =========================================================
+AÇÕES
+========================================================= */
+
+.dashboard-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:24px;
+}
+
+/* =========================================================
+STATS
+========================================================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:18px;
+
+    margin-bottom:24px;
+}
+
+.stat-card{
+
+    position:relative;
+
+    min-height:170px;
+
+    padding:22px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(17,34,58,.92),
+        rgba(7,16,30,.92)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 16px 35px rgba(0,0,0,.28);
+
+    transition:var(--transition);
+}
+
+.stat-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:
+    rgba(56,189,248,.22);
+}
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    top:-80px;
+    right:-80px;
+
+    opacity:.14;
+}
+
+/* =========================================================
+GLOW
+========================================================= */
+
+.stat-danger::before{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(239,68,68,.7),
+        transparent 70%
+    );
+}
+
+.stat-warning::before{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(245,158,11,.7),
+        transparent 70%
+    );
+}
+
+.stat-success::before{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(34,197,94,.7),
+        transparent 70%
+    );
+}
+
+.stat-neutral::before{
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(148,163,184,.7),
+        transparent 70%
+    );
+}
+
+/* =========================================================
+TOPO CARD
+========================================================= */
+
+.stat-topo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+}
+
+.stat-topo span{
+
+    color:var(--text-muted);
+
+    font-size:15px;
+
+    font-weight:700;
+}
+
+.stat-icon{
+
+    width:52px;
+    height:52px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+}
+
+/* =========================================================
+NÚMERO
+========================================================= */
+
+.stat-numero{
+
+    font-size:72px;
+
+    font-weight:900;
+
+    line-height:1;
+
+    letter-spacing:-4px;
+}
+
+.stat-danger .stat-numero{
+    color:#ef4444;
+}
+
+.stat-warning .stat-numero{
+    color:#f59e0b;
+}
+
+.stat-success .stat-numero{
+    color:#22c55e;
+}
+
+.stat-neutral .stat-numero{
+    color:#cbd5e1;
+}
+
+/* =========================================================
+TOPBAR
+========================================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    margin-bottom:30px;
+}
+
+.topbar-esquerda h3{
+
+    font-size:22px;
+
+    font-weight:900;
+
+    margin-bottom:4px;
+}
+
+.topbar-esquerda span{
+
+    display:block;
+
+    color:var(--text-muted);
+
+    font-size:15px;
+}
+
+.topbar-direita{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+.acoes-topbar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.topbar-btn{
+
+    height:44px;
+
+    padding:0 18px;
+
+    border-radius:15px;
+
+    border:1px solid var(--border-strong);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:var(--text);
+
+    font-size:14px;
+    font-weight:700;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:var(--transition);
+}
+
+.topbar-btn:hover{
+
+    background:
+    rgba(56,213,255,.12);
+
+    border-color:
+    rgba(56,213,255,.35);
+
+    transform:translateY(-1px);
+}
+
+/* =========================================================
+USUÁRIO
+========================================================= */
+
+.usuario-box{
+
+    min-width:220px;
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px 14px;
+
+    border-radius:22px;
+
+    background:
+    rgba(255,255,255,.065);
+
+    border:
+    1px solid var(--border);
+}
+
+.avatar-user{
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38d5ff,
+        #2f6df6
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+}
+
+.usuario-box strong{
+
+    display:block;
+
+    font-size:15px;
+}
+
+.usuario-box small{
+
+    display:block;
+
+    color:var(--text-muted);
+
+    font-size:12px;
+
+    margin-top:3px;
+
+    line-height:1.4;
+}
+
+.user-gear{
+
+    margin-left:auto;
+
+    color:#9fb4ca;
+}
+
+/* =========================================================
+RESPONSIVO
+========================================================= */
+
+@media(max-width:1200px){
+
+    .stats-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .topbar-direita{
+
+        width:100%;
+
+        flex-wrap:wrap;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .titulo-dashboard{
+        font-size:42px;
+    }
+}
+.titulo-dashboard{
+    font-size:52px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    min-height:145px;
+    padding:20px;
+    border-radius:24px;
+}
+
+.stat-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.stat-icon{
+    width:44px;
+    height:44px;
+    border-radius:15px;
+    font-size:19px;
+}
+
+.stat-numero{
+    font-size:56px;
+    letter-spacing:-3px;
+}
+
+.dashboard-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:24px;
+}
+
+.dashboard-actions a{
+    min-height:46px;
+}
+/* =========================================================
+CORREÇÃO DASHBOARD - CARDS INTERNOS
+========================================================= */
+
+.card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,.92),
+            rgba(30,41,59,.72)
+        );
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:24px;
+    box-shadow:var(--shadow);
+}
+
+/* cabeçalho dos cards */
+
+.card-header-dashboard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.card-header-dashboard h2,
+.card h2{
+    font-size:22px;
+    font-weight:900;
+    margin:0;
+}
+
+/* botão pequeno */
+
+.btn-mini{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:38px;
+    padding:9px 14px;
+    border-radius:13px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--border);
+    color:white;
+    font-size:13px;
+    font-weight:800;
+    text-decoration:none;
+    transition:var(--transition);
+}
+
+.btn-mini:hover{
+    background:rgba(56,213,255,.13);
+    border-color:rgba(56,213,255,.35);
+    transform:translateY(-2px);
+}
+
+/* mapas */
+
+.cards-mapas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+}
+
+.card-mapa{
+    display:block;
+    padding:20px;
+    border-radius:22px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.06);
+    text-decoration:none;
+    transition:var(--transition);
+}
+
+.card-mapa:hover{
+    transform:translateY(-3px);
+    border-color:rgba(56,213,255,.24);
+    background:rgba(56,213,255,.08);
+}
+
+.card-mapa h3{
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:8px;
+    color:white;
+}
+
+.card-mapa p{
+    color:var(--text-muted);
+    font-size:14px;
+}
+
+/* itens dentro dos cards */
+
+.item-dashboard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.item-dashboard:last-child{
+    border-bottom:none;
+}
+
+.item-dashboard strong{
+    display:block;
+    font-size:15px;
+    margin-bottom:4px;
+}
+
+.item-dashboard p{
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+/* textos vazios */
+
+.texto-secundario{
+    color:var(--text-muted);
+    font-size:14px;
+}
+
+/* rankings */
+
+.item-dashboard span{
+    color:#dbeafe;
+}
+
+/* badge crítico */
+
+.badge-critico{
+    background:rgba(239,68,68,.14);
+    color:#fca5a5;
+    border:1px solid rgba(239,68,68,.24);
+}
+.inventario-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+}
+
+.inventario-grid input{
+    width:100%;
+}
+
+.filtros-inventario{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:20px;
+}
+/* =========================================================
+ESPAÇAMENTO DASHBOARD
+========================================================= */
+
+.dashboard-section,
+.dashboard-card,
+.card-dashboard{
+    margin-bottom:24px;
+}
+
+.dashboard-grid{
+    gap:24px;
+}
+
+.dashboard-grid > .card,
+.grid > .card{
+    margin-bottom:24px;
+}
+
+.card + .card{
+    margin-top:24px;
+}
+/* =========================================================
+ESPAÇAMENTO DASHBOARD SEM QUEBRAR STATS
+========================================================= */
+
+.card-mapas-dashboard,
+.card-dashboard-spaced{
+    margin-bottom:24px;
+}
+
+.dashboard-ti-row{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-bottom:24px;
+}
+
+.dashboard-ti-full{
+    margin-bottom:24px;
+}
+
+.cards-mapas{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:18px;
+}
+
+.card-header-dashboard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+@media(max-width:900px){
+
+    .dashboard-ti-row,
+    .cards-mapas{
+        grid-template-columns:1fr;
+    }
+
+}
+/* =========================================================
+DASHBOARD TI - BLOCOS OPERACIONAIS
+========================================================= */
+
+.dashboard-ti-row{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    margin-bottom:24px;
+}
+
+.dashboard-ti-row > .card{
+    height:100%;
+    margin:0;
+}
+
+.dashboard-ti-full{
+    margin-bottom:24px;
+}
+
+.card-mapas-dashboard{
+    margin-bottom:24px;
+}
+
+.cards-mapas{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:18px;
+}
+
+.card-header-dashboard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+@media(max-width:900px){
+
+    .dashboard-ti-row,
+    .cards-mapas{
+        grid-template-columns:1fr;
+    }
+}

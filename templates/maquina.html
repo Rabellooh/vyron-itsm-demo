@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Histórico da Máquina
+</h1>
+
+<div class="card">
+
+    <h2 style="margin-bottom: 15px;">
+        Máquina:
+        {{ maquina }}
+    </h2>
+
+    <p>
+        Total de chamados:
+        {{ historico | length }}
+    </p>
+
+</div>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Usuário</th>
+<th>Setor</th>
+<th>Status</th>
+
+</tr>
+
+{% for c in historico %}
+
+<tr>
+
+<td>
+#{{ c.id }}
+</td>
+
+<td>
+{{ c.usuario }}
+</td>
+
+<td>
+{{ c.setor }}
+</td>
+
+<td>
+
+{% if c.status == "aberto" %}
+
+<span class="badge aberto">
+Aberto
+</span>
+
+{% elif c.status == "em_andamento" %}
+
+<span class="badge andamento">
+Andamento
+</span>
+
+{% else %}
+
+<span class="badge resolvido">
+Resolvido
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

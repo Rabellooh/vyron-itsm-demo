@@ -1,0 +1,79 @@
+<div class="baia">
+
+    <div class="topo-baia">
+
+        <div class="desktop-id">
+            {{ posicao }}
+        </div>
+
+        {% if desktop.status == "problema" %}
+
+        <span class="badge aberto">
+            CHAMADO
+        </span>
+
+        {% else %}
+
+        <span class="badge resolvido">
+            OK
+        </span>
+
+        {% endif %}
+
+    </div>
+
+    <div class="usuario-maquina">
+
+        {% if desktop.maquina %}
+
+        <a
+            href="/historico_maquina/{{ desktop.maquina }}"
+            class="link-maquina"
+        >
+            {{ desktop.maquina }}
+        </a>
+
+        {% else %}
+
+        VAGO
+
+        {% endif %}
+
+    </div>
+
+    {% if desktop.colaborador %}
+
+    <div class="usuario-maquina">
+        👤 {{ desktop.colaborador }}
+    </div>
+
+    {% endif %}
+
+    {% if desktop.info %}
+
+    <div class="info-extra-mapa">
+
+        <span>
+            {{ desktop.info.modelo }}
+        </span>
+
+        <span>
+            {{ desktop.info.usuario_atual }}
+        </span>
+
+    </div>
+
+    {% endif %}
+
+    {% if usuario.tipo in ["ti", "administracao"] %}
+
+    <a
+        href="{{ url_for('editar_posicao', posicao=posicao) }}"
+        class="btn-mini"
+    >
+        Editar
+    </a>
+
+    {% endif %}
+
+</div>

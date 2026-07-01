@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+<h1 class="titulo">
+    Mapa Operacional - Hunter
+</h1>
+<div class="resumo-operacional">
+
+    <div class="card-resumo">
+
+        <span>Desktops</span>
+        <h2>{{ total_desktops }}</h2>
+
+    </div>
+
+    <div class="card-resumo">
+
+        <span>Notebooks</span>
+        <h2>{{ total_notebooks }}</h2>
+
+    </div>
+
+    <div class="card-resumo">
+
+        <span>Chamados Abertos</span>
+        <h2>{{ total_chamados }}</h2>
+
+    </div>
+
+</div>
+
+<div class="acoes-mapa">
+
+    <a
+        href="/nova_posicao"
+        class="btn-primary"
+    >
+        + Nova Posição
+    </a>
+
+    <a
+        href="/movimentar_maquina"
+        class="btn-warning"
+    >
+        Movimentar Equipamento
+    </a>
+
+    <a
+        href="/historico_mapa"
+        class="btn-dark"
+    >
+        Histórico
+    </a>
+
+</div>
+
+<!-- NOTEBOOKS -->
+
+<div class="notebooks-container">
+
+    {% for item in mapa_db %}
+
+        {% if "NOTEBOOK" in item.posicao %}
+
+        <div class="notebook-card">
+
+            <div class="topo-baia">
+
+                <h3>
+                    {{ item.posicao }}
+                </h3>
+
+                {% if item.maquina in maquinas_com_chamado %}
+
+                <span class="badge aberto">
+                    CHAMADO
+                </span>
+
+                {% else %}
+
+                <span class="badge resolvido">
+                    OK
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="usuario-maquina">
+
+                {% if item.maquina %}
+
+                <a
+                    href="/historico_maquina/{{ item.maquina }}"
+                    class="link-maquina"
+                >
+                    {{ item.maquina }}
+                </a>
+
+                {% else %}
+
+                VAGO
+
+                {% endif %}
+
+            </div>
+
+            {% if item.colaborador %}
+
+            <div class="usuario-maquina">
+                👤 {{ item.colaborador }}
+            </div>
+
+            {% endif %}
+
+            {% for maquina in maquinas %}
+
+                {% if maquina.id_maquina == item.maquina %}
+
+                <div class="info-extra-mapa">
+
+                    <span>
+                        {{ maquina.modelo }}
+                    </span>
+
+                    <span>
+                        {{ maquina.usuario_atual }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+            <a
+                href="{{ url_for('editar_posicao', posicao=item.posicao) }}"
+                class="btn-mini"
+            >
+                Editar
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+<div class="mapa-grid">
+
+    <!-- ILHA 1 ESQUERDA -->
+
+    <div class="ilha">
+
+        <h2>
+            ILHA 1 (ESQ)
+        </h2>
+
+        {% for posicao, desktop in mapa.items() %}
+
+            {% if posicao in [
+                'PC 01',
+                'PC 03',
+                'PC 05',
+                'PC 07',
+                'PC 09',
+                'PC 11'
+            ] %}
+
+            {% include 'partials/baia.html' %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <!-- ILHA 1 DIREITA -->
+
+    <div class="ilha">
+
+        <h2>
+            ILHA 1 (DIR)
+        </h2>
+
+        {% for posicao, desktop in mapa.items() %}
+
+            {% if posicao in [
+                'PC 02',
+                'PC 04',
+                'PC 06',
+                'PC 08',
+                'PC 10',
+                'PC 12'
+            ] %}
+
+            {% include 'partials/baia.html' %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <!-- ILHA 2 ESQUERDA -->
+
+    <div class="ilha">
+
+        <h2>
+            ILHA 2 (ESQ)
+        </h2>
+
+        {% for posicao, desktop in mapa.items() %}
+
+            {% if posicao in [
+                'PC 13',
+                'PC 15',
+                'PC 17',
+                'PC 19',
+                'PC 21',
+                'PC 23'
+            ] %}
+
+            {% include 'partials/baia.html' %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <!-- ILHA 2 DIREITA -->
+
+    <div class="ilha">
+
+        <h2>
+            ILHA 2 (DIR)
+        </h2>
+
+        {% for posicao, desktop in mapa.items() %}
+
+            {% if posicao in [
+                'PC 14',
+                'PC 16',
+                'PC 18',
+                'PC 20',
+                'PC 22',
+                'PC 24'
+            ] %}
+
+            {% include 'partials/baia.html' %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</div>
+<script>
+setTimeout(function(){
+    window.location.reload();
+}, 30000);
+</script>
+
+{% endblock %}

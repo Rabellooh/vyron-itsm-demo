@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Chamados
+</h1>
+
+<div class="card chamados-filtro-card">
+
+    <form
+        method="GET"
+        class="chamados-filtro-form"
+    >
+
+        <input
+            type="text"
+            name="busca"
+            placeholder="Pesquisar por número, colaborador, máquina ou descrição..."
+            value="{{ busca }}"
+        >
+
+        <button class="btn-primary">
+            Buscar
+        </button>
+
+        <div class="chamados-filtro-acoes">
+
+            <a
+                href="/chamados?modo=ativos"
+                class="btn-primary"
+            >
+                Ativos
+            </a>
+
+            <a
+                href="/chamados?modo=arquivados"
+                class="btn-warning"
+            >
+                Arquivados
+            </a>
+
+            {% if usuario.tipo == "ti" %}
+
+            <a
+                href="/arquivar_chamados_antigos"
+                class="btn-danger"
+                onclick="
+                    return confirm(
+                        'Arquivar chamados finalizados há mais de 90 dias?'
+                    )
+                "
+            >
+                Arquivar +90 dias
+            </a>
+
+            {% endif %}
+
+            {% if usuario.tipo != "ti" %}
+
+            <a
+                href="/novo"
+                class="btn-success"
+            >
+                Abrir Chamado
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="lista-chamados">
+
+{% for c in chamados %}
+
+<div class="card-chamado">
+
+    <div class="chamado-header">
+
+        <div>
+
+            <h2>
+                Chamado #{{ c.id }}
+            </h2>
+
+            {% if c.origem %}
+
+                <span class="origem-chamado">
+                    {{ c.origem }}
+                </span>
+
+            {% endif %}
+
+        </div>
+
+        <div>
+
+            {% if c.status == "aberto" %}
+
+                <span class="badge aberto">
+                    Aberto
+                </span>
+
+            {% elif c.status == "em_andamento" %}
+
+                <span class="badge andamento">
+                    Em andamento
+                </span>
+
+            {% else %}
+
+                <span class="badge resolvido">
+                    Resolvido
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="chamado-info-grid">
+
+        <div class="chamado-info-item">
+
+            <span>
+                Colaborador
+            </span>
+
+            <strong>
+                {{ c.usuario }}
+            </strong>
+
+        </div>
+
+        <div class="chamado-info-item">
+
+            <span>
+                Setor
+            </span>
+
+            <strong>
+                {{ c.setor }}
+            </strong>
+
+        </div>
+
+        <div class="chamado-info-item">
+
+            <span>
+                Máquina
+            </span>
+
+            <strong>
+                {{ c.maquina }}
+            </strong>
+
+        </div>
+
+        {% if usuario.tipo == "ti" %}
+
+        <div class="chamado-info-item">
+
+            <span>
+                Técnico
+            </span>
+
+            <strong>
+                {% if c.tecnicos %}
+
+                    {{ c.tecnicos | join(", ") }}
+
+                {% else %}
+
+                    Nenhum
+
+                {% endif %}
+            </strong>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% if c.descricao %}
+
+    <div class="chamado-descricao">
+
+        {{ c.descricao[:160] }}
+
+        {% if c.descricao|length > 160 %}
+            ...
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+    <div class="chamado-acoes">
+
+        <a
+            href="/chamado/{{ c.id }}"
+            class="btn-primary"
+        >
+            Verificar
+        </a>
+
+        {% if usuario.tipo == "ti" %}
+
+            {% if c.status == "aberto" %}
+
+            <a
+                href="/assumir/{{ c.id }}"
+                class="btn-warning"
+            >
+                Assumir
+            </a>
+
+            {% endif %}
+
+            {% if c.status != "resolvido" %}
+
+            <a
+                href="/finalizar/{{ c.id }}"
+                class="btn-success"
+            >
+                Finalizar
+            </a>
+
+            {% else %}
+
+            <a
+                href="/reabrir/{{ c.id }}"
+                class="btn-warning"
+            >
+                Reabrir
+            </a>
+
+            {% endif %}
+
+            <a
+                href="/excluir/{{ c.id }}"
+                class="btn-danger"
+                onclick="
+                    return confirm(
+                        'Deseja excluir este chamado?'
+                    )
+                "
+            >
+                Excluir
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="card">
+
+    <h2>
+        Nenhum chamado encontrado.
+    </h2>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+
+setTimeout(function(){
+
+    window.location.reload();
+
+}, 30000);
+
+</script>
+
+{% endblock %}

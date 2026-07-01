@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <h1 class="titulo">
+        Nova Posição
+    </h1>
+
+    <div class="card editar-posicao-card">
+
+        <form method="POST" class="form-editar-posicao">
+
+            <div class="form-group">
+
+                <label>
+                    Sala
+                </label>
+
+                <select name="sala" required>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Hunter">
+                        Hunter
+                    </option>
+
+                    <option value="BL">
+                        BL
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Posição
+                </label>
+
+                <input
+                    type="text"
+                    name="posicao"
+                    placeholder="Ex: PC 25 ou NOTEBOOK 12"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Máquina
+                </label>
+
+                <input
+                    type="text"
+                    name="maquina"
+                    placeholder="Ex: D08"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Colaborador
+                </label>
+
+                <input
+                    type="text"
+                    name="colaborador"
+                    placeholder="Nome do colaborador"
+                >
+
+            </div>
+
+            <div class="acoes-edicao">
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Criar Posição
+                </button>
+
+                <a
+                    href="/"
+                    class="btn-dark"
+                >
+                    Voltar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

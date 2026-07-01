@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Dashboard
+</h1>
+
+{% if usuario.tipo == "administracao" %}
+
+<div class="card card-mapas-dashboard">
+
+    <div class="mapas-header">
+
+        <h2>
+            Mapas Operacionais
+        </h2>
+
+    </div>
+
+    <div class="cards-mapas">
+
+        <a
+            href="/mapa_hunter"
+            class="card-mapa"
+        >
+
+            <h3>
+                Hunter
+            </h3>
+
+            <p>
+                Visualizar mapa operacional
+            </p>
+
+        </a>
+
+        <a
+            href="/mapa_bl"
+            class="card-mapa"
+        >
+
+            <h3>
+                BL
+            </h3>
+
+            <p>
+                Visualizar mapa operacional
+            </p>
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+
+<!-- CARDS -->
+
+<div class="stats-grid">
+
+    <div class="card stat">
+
+        <span>
+            Chamados Abertos
+        </span>
+
+        <h1 class="txt-aberto">
+            {{ abertos }}
+        </h1>
+
+    </div>
+
+    <div class="card stat">
+
+        <span>
+            Em Andamento
+        </span>
+
+        <h1 class="txt-andamento">
+            {{ andamento }}
+        </h1>
+
+    </div>
+
+    <div class="card stat">
+
+        <span>
+            Resolvidos
+        </span>
+
+        <h1 class="txt-resolvido">
+            {{ resolvidos }}
+        </h1>
+
+    </div>
+
+</div>
+
+
+<!-- MEUS CHAMADOS -->
+
+<div class="card">
+
+    <h3 style="margin-bottom:15px;">
+        Meus Chamados
+    </h3>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Status</th>
+                <th>Técnicos</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for c in chamados %}
+
+            {% if c.usuario == usuario.nome %}
+
+            <tr>
+
+                <td>
+                    #{{ c.id }}
+                </td>
+
+                <td>
+
+                    {% if c.status == "aberto" %}
+
+                    <span class="badge aberto">
+                        Aberto
+                    </span>
+
+                    {% elif c.status == "em_andamento" %}
+
+                    <span class="badge andamento">
+                        Em andamento
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge resolvido">
+                        Resolvido
+                    </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if c.tecnicos %}
+
+                        {{ c.tecnicos | join(", ") }}
+
+                    {% else %}
+
+                        Não atribuído
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endif %}
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

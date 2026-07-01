@@ -1,0 +1,918 @@
+/* =========================================================
+RESPONSIVO BASE
+========================================================= */
+
+.mobile-topbar,
+.mobile-menu-btn,
+.mobile-overlay{
+    display:none;
+}
+
+/* =========================================================
+TABLET / MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .layout{
+        display:block;
+    }
+
+    /* ========================================
+    TOPBAR MOBILE
+    ======================================== */
+
+    .mobile-topbar{
+
+        display:flex;
+
+        align-items:center;
+
+        gap:12px;
+
+        height:62px;
+
+        padding:0 16px;
+
+        background:rgba(7,16,30,.94);
+
+        border-bottom:1px solid rgba(255,255,255,.06);
+
+        position:sticky;
+
+        top:0;
+
+        z-index:2200;
+
+        backdrop-filter:blur(18px);
+    }
+
+    .mobile-topbar span{
+
+        color:white;
+
+        font-weight:900;
+
+        letter-spacing:.5px;
+    }
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        width:42px;
+
+        height:42px;
+
+        border:none;
+
+        border-radius:14px;
+
+        background:rgba(255,255,255,.06);
+
+        color:white;
+
+        font-size:24px;
+
+        font-weight:900;
+
+        border:1px solid rgba(255,255,255,.08);
+
+        transition:.2s ease;
+    }
+
+    .mobile-menu-btn:active{
+        transform:scale(.95);
+    }
+
+    /* ========================================
+    OVERLAY
+    ======================================== */
+
+    .mobile-overlay{
+
+        position:fixed;
+
+        inset:0;
+
+        z-index:1800;
+
+        display:none;
+
+        background:rgba(0,0,0,.55);
+
+        backdrop-filter:blur(4px);
+    }
+
+    .mobile-overlay.ativo{
+        display:block;
+    }
+
+    /* ========================================
+    SIDEBAR
+    ======================================== */
+
+    .sidebar{
+
+        position:fixed;
+
+        top:0;
+
+        left:-290px;
+
+        width:280px;
+
+        min-width:280px;
+
+        height:100vh;
+
+        z-index:2000;
+
+        overflow-y:auto;
+
+        transition:.28s ease;
+
+        padding:16px;
+    }
+
+    .sidebar.sidebar-aberta{
+        left:0;
+    }
+
+    .brand-card{
+
+        min-height:120px;
+
+        margin-bottom:18px;
+    }
+
+    .brand-card h1{
+
+        font-size:22px;
+    }
+
+    .brand-card p{
+
+        font-size:12px;
+    }
+
+    .vyron-mark span{
+
+        font-size:44px;
+    }
+
+    .menu{
+
+        gap:18px;
+
+        overflow:visible;
+    }
+
+    .menu-link{
+
+        padding:12px;
+
+        font-size:14px;
+    }
+
+    .sidebar-footer{
+
+        position:static;
+
+        margin-top:16px;
+    }
+
+    .menu-sair{
+
+        font-size:16px !important;
+
+        text-indent:0 !important;
+
+        color:white !important;
+    }
+
+    /* ========================================
+    CONTEÚDO
+    ======================================== */
+
+    .conteudo{
+
+        width:100%;
+
+        padding:22px 16px 20px 16px;
+    }
+
+    /* ========================================
+    TOPBAR SISTEMA
+    ======================================== */
+
+    .topbar{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:14px;
+
+        margin-bottom:28px;
+
+        background:transparent !important;
+
+        border:none !important;
+
+        box-shadow:none !important;
+
+        padding:0 !important;
+    }
+
+    .topbar-esquerda h3{
+
+        font-size:22px;
+
+        line-height:1.1;
+    }
+
+    .topbar-esquerda span{
+
+        font-size:14px;
+    }
+
+    .topbar-direita{
+
+        width:100%;
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:12px;
+    }
+
+    .acoes-topbar{
+
+        display:grid;
+
+        width:100%;
+
+        gap:8px;
+
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .topbar-btn{
+
+        width:100%;
+
+        height:44px;
+
+        font-size:13px;
+
+        padding:0 8px;
+
+        border-radius:15px;
+    }
+
+    .usuario-box{
+
+        width:100%;
+
+        min-width:100%;
+
+        border-radius:20px;
+
+        min-height:74px;
+    }
+
+    .notificacao-dropdown{
+
+        width:300px;
+
+        right:0;
+    }
+
+    /* ========================================
+    TÍTULOS
+    ======================================== */
+
+    .titulo,
+    .titulo-dashboard,
+    .titulo-kanban{
+
+        font-size:36px !important;
+
+        line-height:1.05;
+    }
+
+    /* ========================================
+    GRIDS
+    ======================================== */
+
+    .grid,
+    .usuarios-grid,
+    .mapa-grid,
+    .notebooks-container,
+    .resumo-operacional{
+
+        grid-template-columns:1fr !important;
+    }
+
+    /* ========================================
+    CARDS
+    ======================================== */
+
+    .card{
+
+        padding:20px;
+
+        border-radius:24px;
+    }
+
+    /* ========================================
+    DASHBOARD
+    ======================================== */
+
+    .dashboard-actions{
+
+        display:grid;
+
+        gap:10px;
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats-grid{
+
+        display:grid;
+
+        gap:12px;
+
+        grid-template-columns:repeat(2,1fr) !important;
+    }
+
+    .stats-grid .stat-card:last-child:nth-child(odd){
+
+        grid-column:1/-1;
+    }
+
+    .stat-card{
+
+        min-height:150px;
+
+        padding:18px;
+    }
+
+    .stat-numero{
+
+        font-size:50px;
+    }
+
+    /* ========================================
+    FORMS
+    ======================================== */
+
+    .form-grid,
+    .form-grid-kanban,
+    .inventario-grid,
+    .grid-form,
+    .filtros-avancados-grid{
+
+        grid-template-columns:1fr !important;
+    }
+
+    input,
+    select,
+    textarea{
+
+        width:100%;
+    }
+
+    .pesquisa-principal{
+
+        grid-template-columns:1fr;
+    }
+
+    /* ========================================
+    TABELAS
+    ======================================== */
+
+    .tabela-container{
+
+        overflow-x:auto;
+    }
+
+    table{
+
+        min-width:760px;
+    }
+
+    /* ========================================
+    KANBAN
+    ======================================== */
+
+    .kanban{
+
+        grid-template-columns:1fr !important;
+    }
+
+    .kanban-coluna{
+
+        max-height:none;
+
+        min-height:auto;
+    }
+}
+
+/* =========================================================
+CELULAR PEQUENO
+========================================================= */
+
+@media(max-width:520px){
+
+    .conteudo{
+
+        padding:18px 14px;
+    }
+
+    .titulo,
+    .titulo-dashboard,
+    .titulo-kanban{
+
+        font-size:32px !important;
+    }
+
+    .acoes-topbar{
+
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .topbar-btn{
+
+        height:42px;
+
+        font-size:12px;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr) !important;
+    }
+
+    .stat-numero{
+
+        font-size:46px;
+    }
+
+    .notificacao-dropdown{
+
+        position:fixed;
+
+        left:12px;
+
+        right:12px;
+
+        width:auto;
+
+        top:78px;
+    }
+}
+
+/* =========================================================
+CELULAR MUITO PEQUENO
+========================================================= */
+
+@media(max-width:380px){
+
+    .acoes-topbar{
+
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-actions{
+
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr !important;
+    }
+}
+@media(max-width:900px){
+
+    .kanban{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:14px;
+    }
+
+    .kanban-coluna{
+
+        width:100%;
+
+        min-width:100%;
+
+        min-height:320px;
+
+        padding:18px;
+    }
+
+    .kanban-header{
+
+        position:sticky;
+
+        top:0;
+
+        z-index:2;
+    }
+
+    .task-card{
+
+        margin-bottom:10px;
+    }
+
+}
+@media(max-width:900px){
+
+    .inventario-card,
+    .ativo-card{
+
+        min-height:auto !important;
+
+        padding:16px;
+
+        gap:10px;
+    }
+
+    .inventario-grid{
+
+        gap:12px;
+    }
+
+}
+@media(max-width:900px){
+
+    .mapa-stats,
+    .mapas-resumo{
+
+        grid-template-columns:repeat(2,1fr) !important;
+
+        gap:10px;
+    }
+
+    .mapa-stat-card{
+
+        min-height:110px;
+
+        padding:16px;
+    }
+
+    .mapa-stat-card h2{
+
+        font-size:28px;
+    }
+
+}
+/* =========================================================
+MAPAS MOBILE COMPACTO
+========================================================= */
+
+@media(max-width:900px){
+
+    .resumo-operacional{
+        display:grid;
+        grid-template-columns:repeat(3,1fr) !important;
+        gap:10px;
+    }
+
+    .card-resumo{
+        min-height:95px !important;
+        padding:14px !important;
+        border-radius:18px !important;
+    }
+
+    .card-resumo span{
+        font-size:11px !important;
+    }
+
+    .card-resumo h2{
+        font-size:28px !important;
+    }
+
+    .acoes-mapa{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+        margin:16px 0;
+    }
+
+    .acoes-mapa a{
+        width:100%;
+        min-height:40px;
+        font-size:13px;
+        border-radius:13px;
+    }
+
+    .notebooks-container{
+        display:grid;
+        grid-template-columns:1fr !important;
+        gap:12px;
+    }
+
+    .notebook-card{
+        min-height:auto !important;
+        padding:14px !important;
+        border-radius:18px !important;
+    }
+
+    .topo-baia{
+        margin-bottom:10px !important;
+    }
+
+    .topo-baia h3{
+        font-size:17px !important;
+    }
+
+    .usuario-maquina{
+        font-size:13px !important;
+        margin-bottom:8px !important;
+    }
+
+    .info-extra-mapa{
+        padding:10px !important;
+        border-radius:13px !important;
+        margin-bottom:10px !important;
+    }
+
+    .info-extra-mapa span{
+        font-size:12px !important;
+    }
+
+    .notebook-card .btn-mini,
+    .baia .btn-mini{
+        min-height:34px;
+        padding:7px 10px;
+        font-size:12px;
+    }
+
+    .mapa-grid{
+        display:grid;
+        grid-template-columns:1fr !important;
+        gap:14px;
+    }
+
+    .ilha{
+        padding:16px !important;
+        border-radius:22px !important;
+    }
+
+    .ilha h2{
+        font-size:21px !important;
+        margin-bottom:14px !important;
+    }
+
+    .baia{
+        padding:14px !important;
+        border-radius:17px !important;
+        margin-bottom:12px !important;
+    }
+
+    .desktop-id{
+        font-size:14px !important;
+    }
+
+}
+/* =========================================================
+MAPAS / ILHAS MOBILE MAIS COMPACTAS
+========================================================= */
+
+@media(max-width:900px){
+
+    .mapa-grid{
+        display:grid !important;
+        grid-template-columns:1fr !important;
+        gap:16px !important;
+    }
+
+    .ilha{
+        padding:18px !important;
+        border-radius:24px !important;
+    }
+
+    .ilha h2{
+        font-size:24px !important;
+        margin-bottom:16px !important;
+    }
+
+    .baia{
+        display:grid !important;
+        grid-template-columns:1fr auto !important;
+        gap:8px 12px !important;
+
+        padding:14px !important;
+        margin-bottom:12px !important;
+        border-radius:18px !important;
+    }
+
+    .baia h3,
+    .baia .desktop-id{
+        font-size:16px !important;
+        margin:0 !important;
+    }
+
+    .baia .status,
+    .baia .badge,
+    .baia .badge-mapa{
+        grid-column:2 !important;
+        grid-row:1 / span 2 !important;
+        align-self:start !important;
+        justify-self:end !important;
+    }
+
+    .usuario-maquina{
+        grid-column:1 / -1 !important;
+        font-size:13px !important;
+        margin:4px 0 !important;
+    }
+
+    .info-extra-mapa{
+        grid-column:1 / -1 !important;
+        padding:10px 12px !important;
+        border-radius:14px !important;
+        margin:4px 0 6px 0 !important;
+    }
+
+    .info-extra-mapa span,
+    .info-extra-mapa p{
+        font-size:12px !important;
+        line-height:1.4 !important;
+    }
+
+    .baia .btn-mini,
+    .baia .btn-editar,
+    .baia a{
+        grid-column:1 / -1 !important;
+        width:100% !important;
+        min-height:34px !important;
+        padding:7px 10px !important;
+        font-size:12px !important;
+        border-radius:12px !important;
+        justify-content:center !important;
+        text-align:center !important;
+    }
+}
+
+@media(max-width:430px){
+
+    .resumo-operacional{
+        grid-template-columns:1fr !important;
+    }
+
+    .card-resumo{
+        min-height:78px !important;
+    }
+
+}
+/* =========================================================
+USUÁRIO / SINO MOBILE COMPACTO
+========================================================= */
+
+@media(max-width:900px){
+
+    .usuario-box{
+        min-height:58px !important;
+        padding:10px 12px !important;
+        gap:10px !important;
+        align-items:center !important;
+    }
+
+    .avatar-user{
+        width:46px !important;
+        height:46px !important;
+        min-width:46px !important;
+    }
+
+    .usuario-box strong{
+        font-size:15px !important;
+    }
+
+    .usuario-box small{
+        font-size:12px !important;
+    }
+
+    .notificacao-wrapper{
+        margin-left:auto !important;
+    }
+
+    .notificacao-btn{
+        width:42px !important;
+        height:42px !important;
+        border-radius:14px !important;
+    }
+
+    .notificacao-badge{
+        top:-8px !important;
+        right:-6px !important;
+    }
+}
+
+@media(max-width:520px){
+
+    .usuario-box{
+        min-height:56px !important;
+    }
+
+    .avatar-user{
+        width:44px !important;
+        height:44px !important;
+        min-width:44px !important;
+    }
+
+    .notificacao-btn{
+        width:40px !important;
+        height:40px !important;
+    }
+}
+/* =========================================================
+KANBAN MOBILE FIX
+========================================================= */
+
+@media(max-width:900px){
+
+    .kanban-stats{
+        display:grid !important;
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:12px !important;
+        width:100%;
+    }
+
+    .kanban-form-card{
+        padding:18px !important;
+        margin-bottom:22px !important;
+    }
+
+    .form-grid-kanban{
+        display:grid !important;
+        grid-template-columns:1fr !important;
+        gap:12px !important;
+    }
+
+    .form-grid-kanban textarea{
+        min-height:120px !important;
+    }
+
+    .kanban-carousel{
+        overflow:visible !important;
+        width:100% !important;
+    }
+
+    .kanban{
+        display:flex !important;
+        flex-direction:column !important;
+        gap:16px !important;
+        overflow:visible !important;
+        width:100% !important;
+        padding:0 !important;
+    }
+
+    .kanban-coluna{
+        width:100% !important;
+        min-width:100% !important;
+        max-width:100% !important;
+        min-height:260px !important;
+        max-height:none !important;
+        overflow:visible !important;
+        padding:18px !important;
+        border-radius:22px !important;
+    }
+
+    .kanban-arrow{
+        display:none !important;
+    }
+
+    .kanban-topo h2{
+        font-size:20px !important;
+    }
+
+    .task-card{
+        padding:16px !important;
+        border-radius:18px !important;
+        margin-bottom:12px !important;
+    }
+
+    .task-actions{
+        display:grid !important;
+        grid-template-columns:1fr !important;
+        gap:8px !important;
+    }
+}

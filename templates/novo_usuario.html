@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="usuarios-container">
+
+    <div class="usuarios-topo">
+
+        <div>
+
+            <h1 class="titulo">
+                Novo Usuário
+            </h1>
+
+            <p class="subtitulo">
+                Cadastro de usuários do sistema
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <form
+            method="POST"
+            class="form-padrao"
+        >
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nome"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Senha
+                    </label>
+
+                    <input
+                        type="text"
+                        name="senha"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Tipo
+                    </label>
+
+                    <select name="tipo">
+
+                        <option value="colaborador">
+                            Colaborador
+                        </option>
+
+                        <option value="administracao">
+                            Administração
+                        </option>
+
+                        <option value="ti">
+                            TI
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Setor
+                    </label>
+
+                    <input
+                        type="text"
+                        name="setor"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                    >
+
+                </div>
+
+            </div>
+            <div class="form-group">
+
+            <label>
+                Matrícula / ID
+            </label>
+
+            <input
+                type="number"
+                name="id"
+                required
+            >
+
+</div>
+
+            <div style="margin-top:20px;">
+
+                <button
+                    type="submit"
+                    class="btn-success"
+                >
+                    Criar Usuário
+                </button>
+
+            </div>
+            
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <h1 class="titulo">
+        Editar Posição
+    </h1>
+
+    <div class="card editar-posicao-card">
+
+        <form method="POST" class="form-editar-posicao">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Sala
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ posicao.sala or '' }}"
+                        disabled
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Posição
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nova_posicao"
+                        value="{{ posicao.posicao or '' }}"
+                        placeholder="Ex: 1016 - PC 01"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Máquina / Notebook
+                    </label>
+
+                    <input
+                        type="text"
+                        name="maquina"
+                        value="{{ posicao.maquina or '' }}"
+                        placeholder="Ex: D08 ou 50"
+                    >
+
+                    <small class="texto-ajuda">
+                        Deixe vazio caso a posição esteja vaga
+                    </small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Colaborador
+                    </label>
+
+                    <input
+                        type="text"
+                        name="colaborador"
+                        value="{{ ativo.usuario_atual if ativo else '' }}"
+                        placeholder="Nome do colaborador"
+                    >
+
+                    <small class="texto-ajuda">
+                        Este nome será atualizado diretamente na tabela de ativos
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="card info-posicao-box">
+
+                <h3>
+                    Informações da posição
+                </h3>
+
+                <div class="info-posicao-grid">
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Sala
+                        </span>
+
+                        <span class="info-value">
+                            {{ posicao.sala or '---' }}
+                        </span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Máquina atual
+                        </span>
+
+                        <span class="info-value">
+                            {{ posicao.maquina or 'VAGO' }}
+                        </span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Colaborador atual
+                        </span>
+
+                        <span class="info-value">
+                            {{ ativo.usuario_atual if ativo else 'Sem colaborador' }}
+                        </span>
+
+                    </div>
+
+                    {% if ativo %}
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Modelo
+                        </span>
+
+                        <span class="info-value">
+                            {{ ativo.modelo or '---' }}
+                        </span>
+
+                    </div>
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Marca
+                        </span>
+
+                        <span class="info-value">
+                            {{ ativo.marca or '---' }}
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="acoes-edicao">
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Salvar Alterações
+                </button>
+
+                <a
+                    href="{{ url_for('excluir_posicao', posicao=posicao.posicao) }}"
+                    class="btn-danger"
+                    onclick="return confirm('Deseja realmente excluir esta posição?')"
+                >
+                    Excluir Posição
+                </a>
+
+                {% if posicao.sala == "BL" %}
+
+                <a
+                    href="/mapa_bl"
+                    class="btn-dark"
+                >
+                    Voltar
+                </a>
+
+                {% else %}
+
+                <a
+                    href="/mapa_hunter"
+                    class="btn-dark"
+                >
+                    Voltar
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

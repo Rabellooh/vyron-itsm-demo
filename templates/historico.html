@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Central de Histórico
+</h1>
+
+<div class="card">
+
+    <form
+        method="GET"
+        style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        "
+    >
+
+        <input
+            type="text"
+            name="busca"
+            placeholder="Pesquisar máquina ou colaborador..."
+            value="{{ busca }}"
+        >
+
+        <button class="btn-primary">
+            Pesquisar
+        </button>
+
+    </form>
+
+</div>
+
+<br>
+
+{% if resultados %}
+
+<div class="card">
+
+    <h2 style="margin-bottom:20px;">
+        Resultado da Consulta
+    </h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <span>
+                Total de Chamados
+            </span>
+
+            <h1>
+                {{ resultados|length }}
+            </h1>
+
+        </div>
+
+        <div class="card">
+
+            <span>
+                Técnicos Envolvidos
+            </span>
+
+            <h1>
+                {{ tecnicos|length }}
+            </h1>
+
+        </div>
+
+        <div class="card">
+
+            <span>
+                Máquinas Relacionadas
+            </span>
+
+            <h1>
+                {{ maquinas|length }}
+            </h1>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="lista-chamados">
+
+{% for c in resultados|reverse %}
+
+<div class="card">
+
+    <div
+        style="
+            display:flex;
+            justify-content:space-between;
+            gap:20px;
+            flex-wrap:wrap;
+        "
+    >
+
+        <div>
+
+            <h3>
+                Chamado #{{ c.id }}
+            </h3>
+
+            <br>
+
+            <p>
+                <b>Colaborador:</b>
+                {{ c.usuario }}
+            </p>
+
+            <p>
+                <b>Setor:</b>
+                {{ c.setor }}
+            </p>
+
+            <p>
+                <b>Máquina:</b>
+                {{ c.maquina }}
+            </p>
+
+            <p>
+                <b>Categoria:</b>
+                {{ c.categoria }}
+            </p>
+
+            <p>
+                <b>Status:</b>
+                {{ c.status }}
+            </p>
+
+            <p>
+                <b>Técnicos:</b>
+
+                {% if c.tecnicos %}
+
+                    {{ c.tecnicos | join(", ") }}
+
+                {% else %}
+
+                    Nenhum
+
+                {% endif %}
+            </p>
+
+            <p>
+                <b>Solução:</b>
+
+                {% if c.solucao %}
+
+                    {{ c.solucao }}
+
+                {% else %}
+
+                    Não registrada
+
+                {% endif %}
+            </p>
+
+        </div>
+
+        <div>
+
+            <a
+                href="/chamado/{{ c.id }}"
+                class="btn-primary"
+            >
+                Ver Detalhes
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}

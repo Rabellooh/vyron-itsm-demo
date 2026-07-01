@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <div
+        class="card"
+        style="
+            max-width:500px;
+            margin:50px auto;
+        "
+    >
+
+        <h1 class="titulo">
+            Trocar Senha
+        </h1>
+
+        <p
+            style="
+                color:#94a3b8;
+                margin-bottom:25px;
+            "
+        >
+            Você precisa definir uma nova senha
+            antes de continuar.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for categoria, mensagem in messages %}
+
+                    <div class="alerta {{ categoria }}">
+
+                        {{ mensagem }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+        <form method="POST">
+
+            <label>
+                Nova Senha
+            </label>
+
+            <input
+                type="password"
+                name="nova_senha"
+                required
+            >
+
+            <label>
+                Confirmar Senha
+            </label>
+
+            <input
+                type="password"
+                name="confirmar_senha"
+                required
+            >
+
+            <br>
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Alterar Senha
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

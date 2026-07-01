@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Editar Item do Estoque
+</h1>
+
+<div class="card">
+
+    <form method="POST">
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="item"
+                value="{{ item.item }}"
+                placeholder="Item"
+                required
+            >
+
+            <input
+                type="text"
+                name="categoria"
+                value="{{ item.categoria }}"
+                placeholder="Categoria"
+            >
+
+            <input
+                type="number"
+                name="quantidade"
+                value="{{ item.quantidade }}"
+                placeholder="Quantidade"
+                min="0"
+            >
+
+            <input
+                type="number"
+                name="minimo"
+                value="{{ item.minimo }}"
+                placeholder="Estoque mínimo"
+                min="0"
+            >
+
+            <input
+                type="text"
+                name="observacao"
+                value="{{ item.observacao }}"
+                placeholder="Observação"
+            >
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-success">
+                Salvar Alterações
+            </button>
+
+            <a
+                href="/estoque"
+                class="btn-warning"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+    "name": "Vyron ITSM",
+    "short_name": "Vyron",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#071426",
+    "theme_color": "#071426",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/static/img/logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/img/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,529 @@
+/* =========================================================
+KANBAN PAGE
+========================================================= */
+
+.kanban-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+
+    margin-bottom:26px;
+}
+
+.titulo-kanban{
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:-3px;
+
+    margin-bottom:8px;
+}
+
+.subtitulo-kanban{
+    color:var(--text-muted);
+    font-size:18px;
+}
+
+/* =========================================================
+STATS
+========================================================= */
+
+.kanban-stats{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    min-width:110px;
+
+    padding:18px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(15,23,42,.92),
+        rgba(30,41,59,.72)
+    );
+
+    border:1px solid var(--border);
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.stat-box span{
+    display:block;
+
+    font-size:34px;
+    font-weight:900;
+
+    margin-bottom:4px;
+}
+
+.stat-box p{
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+/* =========================================================
+FORM
+========================================================= */
+
+.kanban-form-card{
+    margin-bottom:28px;
+}
+
+.form-grid-kanban{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:16px;
+}
+
+.form-grid-kanban textarea{
+    min-height:120px;
+
+    resize:none;
+
+    grid-column:1/-1;
+}
+
+.btn-criar-task{
+    height:52px;
+    grid-column:1/-1;
+}
+
+/* =========================================================
+KANBAN CAROUSEL
+========================================================= */
+
+.kanban-carousel{
+    position:relative;
+}
+
+.kanban{
+    display:grid;
+
+    grid-auto-flow:column;
+
+    grid-auto-columns:
+    calc((100% - 40px) / 3);
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+    scroll-snap-type:x mandatory;
+
+    padding:4px 4px 18px 4px;
+}
+
+.kanban::-webkit-scrollbar{
+    height:0;
+}
+
+.kanban-coluna{
+    scroll-snap-align:start;
+
+    min-height:620px;
+
+    padding:20px;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(15,23,42,.92),
+        rgba(30,41,59,.72)
+    );
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================================================
+TOPO COLUNA
+========================================================= */
+
+.kanban-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.kanban-topo h2{
+    font-size:24px;
+    font-weight:900;
+}
+
+.badge-coluna{
+    min-width:36px;
+    height:36px;
+
+    border-radius:999px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    rgba(56,213,255,.14);
+
+    border:
+    1px solid rgba(56,213,255,.22);
+
+    color:#7dd3fc;
+
+    font-size:14px;
+    font-weight:900;
+}
+
+/* =========================================================
+TASK CARD
+========================================================= */
+
+.task-card{
+    padding:18px;
+
+    border-radius:22px;
+
+    margin-bottom:16px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    transition:var(--transition);
+}
+
+.task-card:hover{
+    transform:translateY(-3px);
+
+    border-color:
+    rgba(56,213,255,.24);
+
+    background:
+    rgba(56,213,255,.05);
+}
+
+.task-prioridade{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:28px;
+
+    padding:0 12px;
+
+    border-radius:999px;
+
+    font-size:11px;
+    font-weight:900;
+
+    margin-bottom:14px;
+}
+
+/* =========================================================
+PRIORIDADES
+========================================================= */
+
+.prioridade-baixa .task-prioridade{
+    background:
+    rgba(34,197,94,.12);
+
+    border:
+    1px solid rgba(34,197,94,.22);
+
+    color:#86efac;
+}
+
+.prioridade-media .task-prioridade{
+    background:
+    rgba(234,179,8,.12);
+
+    border:
+    1px solid rgba(234,179,8,.22);
+
+    color:#fde68a;
+}
+
+.prioridade-alta .task-prioridade{
+    background:
+    rgba(249,115,22,.12);
+
+    border:
+    1px solid rgba(249,115,22,.22);
+
+    color:#fdba74;
+}
+
+.prioridade-critica .task-prioridade{
+    background:
+    rgba(239,68,68,.12);
+
+    border:
+    1px solid rgba(239,68,68,.22);
+
+    color:#fca5a5;
+}
+
+/* =========================================================
+TEXTOS
+========================================================= */
+
+.task-card h3{
+    font-size:20px;
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.task-card p{
+    color:var(--text-muted);
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    margin-bottom:16px;
+}
+
+/* =========================================================
+INFO
+========================================================= */
+
+.task-info{
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:18px;
+}
+
+.task-info span{
+    color:#dbeafe;
+
+    font-size:13px;
+}
+
+/* =========================================================
+ACTIONS
+========================================================= */
+
+.task-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.task-actions .btn-mini{
+    flex:1;
+
+    min-width:90px;
+}
+
+/* =========================================================
+SETAS
+========================================================= */
+
+.kanban-arrow{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:20;
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    border:
+    1px solid rgba(56,213,255,.28);
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(15,23,42,.96),
+        rgba(30,41,59,.82)
+    );
+
+    color:white;
+
+    font-size:34px;
+    font-weight:800;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 16px 35px rgba(0,0,0,.35),
+    0 0 22px rgba(56,213,255,.12);
+
+    transition:var(--transition);
+}
+
+.kanban-arrow:hover{
+    transform:
+    translateY(-50%)
+    scale(1.08);
+
+    border-color:
+    rgba(56,213,255,.55);
+
+    background:
+    rgba(56,213,255,.16);
+}
+
+.kanban-arrow-left{
+    left:10px;
+}
+
+.kanban-arrow-right{
+    right:10px;
+}
+
+/* =========================================================
+RESPONSIVO
+========================================================= */
+
+@media(max-width:1200px){
+
+    .kanban{
+        grid-auto-columns:
+        calc((100% - 20px) / 2);
+    }
+}
+
+@media(max-width:900px){
+
+    .kanban-header{
+        flex-direction:column;
+    }
+
+    .titulo-kanban{
+        font-size:42px;
+    }
+}
+
+@media(max-width:760px){
+
+    .kanban{
+        grid-auto-columns:100%;
+    }
+
+    .kanban-arrow-left{
+        left:8px;
+    }
+
+    .kanban-arrow-right{
+        right:8px;
+    }
+
+    .form-grid-kanban{
+        grid-template-columns:1fr;
+    }
+}
+/* =========================================================
+KANBAN LIMPO - 4 COLUNAS SEM CARROSSEL
+========================================================= */
+
+.kanban-carousel{
+    position:relative;
+    margin-top:24px;
+}
+
+.kanban-arrow{
+    display:none;
+}
+
+.kanban{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(220px, 1fr));
+    gap:16px;
+    overflow:visible;
+    padding:0;
+}
+
+.kanban-coluna{
+    min-height:420px;
+    max-height:620px;
+    overflow-y:auto;
+    padding:16px;
+    border-radius:24px;
+}
+
+.kanban-coluna::-webkit-scrollbar{
+    width:6px;
+}
+
+.kanban-coluna::-webkit-scrollbar-thumb{
+    background:rgba(56,213,255,.25);
+    border-radius:999px;
+}
+
+.kanban-topo{
+    position:sticky;
+    top:0;
+    z-index:2;
+    background:rgba(15,23,42,.96);
+    backdrop-filter:blur(12px);
+    padding-bottom:14px;
+}
+
+.kanban-topo h2{
+    font-size:20px;
+}
+
+.task-card{
+    padding:16px;
+    border-radius:20px;
+}
+
+.task-card h3{
+    font-size:16px;
+}
+
+.task-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+}
+
+.task-actions .btn-mini{
+    width:100%;
+}
+
+/* telas menores */
+@media(max-width:1300px){
+    .kanban{
+        grid-template-columns:repeat(2, minmax(260px, 1fr));
+    }
+}
+
+@media(max-width:760px){
+    .kanban{
+        grid-template-columns:1fr;
+    }
+}

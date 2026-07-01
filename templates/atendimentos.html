@@ -1,0 +1,649 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Atendimentos TI
+</h1>
+
+<div class="resumo-operacional">
+
+    <div class="card-resumo">
+        <span>Total registrado</span>
+        <h2>{{ total_atendimentos }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Exibição atual</span>
+        <h2>{{ atendimentos|length }}</h2>
+    </div>
+
+</div>
+
+<div class="card atendimentos-meses-card">
+
+    <div class="atendimentos-meses-header">
+
+        <div>
+
+            <h2>
+                Consulta por mês
+            </h2>
+
+            <p>
+                Selecione o período para visualizar os atendimentos registrados.
+            </p>
+
+        </div>
+
+        <form
+            method="GET"
+            class="atendimentos-ano-form"
+        >
+
+            {% if mes %}
+
+            <input
+                type="hidden"
+                name="mes"
+                value="{{ mes }}"
+            >
+
+            {% endif %}
+
+            {% if todos %}
+
+            <input
+                type="hidden"
+                name="todos"
+                value="1"
+            >
+
+            {% endif %}
+
+            <select
+                name="ano"
+                onchange="this.form.submit()"
+            >
+
+                {% for a in anos_disponiveis %}
+
+                <option
+                    value="{{ a }}"
+                    {% if ano_base|string == a|string %}
+                    selected
+                    {% endif %}
+                >
+                    {{ a }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </form>
+
+    </div>
+
+    <div class="atendimentos-meses-tabs">
+
+        <a
+            href="/atendimentos?todos=1"
+            class="atendimento-mes-tab {% if todos %}ativo{% endif %}"
+        >
+            Todos
+        </a>
+
+        {% for numero, nome in meses %}
+
+        <a
+            href="/atendimentos?mes={{ numero }}&ano={{ ano_base }}"
+            class="atendimento-mes-tab {% if mes == numero and not todos %}ativo{% endif %}"
+        >
+            {{ nome }}
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="card atendimento-analytics-card">
+
+    <div class="analytics-header">
+
+        <div>
+
+            <h2>
+                Análise do período
+            </h2>
+
+            <p>
+                Indicadores calculados com base na consulta atual.
+            </p>
+
+        </div>
+
+        <span class="analytics-pill">
+
+            {% if todos %}
+
+                Todos os períodos
+
+            {% else %}
+
+                {{ mes }}/{{ ano_base }}
+
+            {% endif %}
+
+        </span>
+
+    </div>
+
+    <div class="analytics-kpis analytics-kpis-3">
+
+        <div class="analytics-kpi">
+            <span>Total no período</span>
+            <strong>{{ total_periodo }}</strong>
+        </div>
+
+        <div class="analytics-kpi">
+            <span>Categoria mais comum</span>
+            <strong>{{ categoria_top[0] }}</strong>
+            <small>{{ categoria_top[1] }} registros</small>
+        </div>
+
+        <div class="analytics-kpi">
+            <span>Setor mais atendido</span>
+            <strong>{{ setor_top[0] }}</strong>
+            <small>{{ setor_top[1] }} registros</small>
+        </div>
+
+    </div>
+
+    <div class="analytics-grid analytics-grid-duplo">
+
+        <div class="analytics-box">
+
+            <h3>
+                Por categoria
+            </h3>
+
+            {% for nome, qtd in contador_categoria.most_common(6) %}
+
+            <div class="analytics-bar-item">
+
+                <div class="analytics-bar-top">
+
+                    <span>
+                        {{ nome }}
+                    </span>
+
+                    <strong>
+                        {{ qtd }}
+                    </strong>
+
+                </div>
+
+                <progress
+                    class="analytics-progress"
+                    value="{{ qtd }}"
+                    max="{{ max_categoria }}"
+                ></progress>
+
+            </div>
+
+            {% else %}
+
+            <p class="analytics-empty">
+                Nenhum dado no período.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="analytics-box">
+
+            <h3>
+                Por setor
+            </h3>
+
+            {% for nome, qtd in contador_setor.most_common(6) %}
+
+            <div class="analytics-bar-item">
+
+                <div class="analytics-bar-top">
+
+                    <span>
+                        {{ nome }}
+                    </span>
+
+                    <strong>
+                        {{ qtd }}
+                    </strong>
+
+                </div>
+
+                <progress
+                    class="analytics-progress setor"
+                    value="{{ qtd }}"
+                    max="{{ max_setor }}"
+                ></progress>
+
+            </div>
+
+            {% else %}
+
+            <p class="analytics-empty">
+                Nenhum dado no período.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Novo atendimento
+    </h2>
+
+    <form
+        action="/novo_atendimento"
+        method="POST"
+    >
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="nome_colaborador"
+                placeholder="Nome do colaborador"
+                required
+            >
+
+            <input
+                type="text"
+                name="setor"
+                placeholder="Setor"
+            >
+
+            <input
+                type="date"
+                name="data_atendimento"
+                required
+            >
+
+            <select name="categoria">
+
+                <option value="">
+                    Categoria
+                </option>
+
+                <option value="Hardware">
+                    Hardware
+                </option>
+
+                <option value="Software">
+                    Software
+                </option>
+
+                <option value="Acesso">
+                    Acesso
+                </option>
+
+                <option value="Rede">
+                    Rede
+                </option>
+
+                <option value="Telefonia">
+                    Telefonia
+                </option>
+
+                <option value="Outro">
+                    Outro
+                </option>
+
+            </select>
+
+            <select name="tecnico">
+
+                <option value="">
+                    Técnico responsável
+                </option>
+
+                {% for t in tecnicos %}
+
+                <option value="{{ t.nome }}">
+                    {{ t.nome }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <input
+                type="text"
+                name="problema"
+                placeholder="Problema"
+                required
+            >
+
+            <input
+                type="text"
+                name="solucao"
+                placeholder="Solução aplicada"
+            >
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-success">
+                Registrar atendimento
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Importar planilha antiga
+    </h2>
+
+    <form
+        action="/importar_atendimentos"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        <div class="grid-form">
+
+            <input
+                type="file"
+                name="arquivo"
+                accept=".xlsx,.xls"
+                required
+            >
+
+            <select name="tecnico_padrao">
+
+                <option value="{{ usuario.nome }}">
+                    Técnico padrão: {{ usuario.nome }}
+                </option>
+
+                {% for t in tecnicos %}
+
+                <option value="{{ t.nome }}">
+                    {{ t.nome }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-primary">
+                Importar XLSX
+            </button>
+
+            <a
+                href="{{ url_for(
+                    'exportar_atendimentos_xlsx',
+                    busca=busca,
+                    mes=mes,
+                    ano=ano_base,
+                    setor=setor,
+                    categoria=categoria,
+                    tecnico=tecnico,
+                    todos=1 if todos else 0
+                ) }}"
+                class="btn-success"
+            >
+                Exportar XLSX
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Filtros
+    </h2>
+
+    <form method="GET">
+
+        {% if todos %}
+
+        <input
+            type="hidden"
+            name="todos"
+            value="1"
+        >
+
+        {% else %}
+
+            {% if mes %}
+
+            <input
+                type="hidden"
+                name="mes"
+                value="{{ mes }}"
+            >
+
+            {% endif %}
+
+            {% if ano_base %}
+
+            <input
+                type="hidden"
+                name="ano"
+                value="{{ ano_base }}"
+            >
+
+            {% endif %}
+
+        {% endif %}
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="busca"
+                placeholder="Buscar por nome, problema ou solução..."
+                value="{{ busca }}"
+            >
+
+            <input
+                type="text"
+                name="setor"
+                placeholder="Setor"
+                value="{{ setor }}"
+            >
+
+            <select name="categoria">
+
+                <option value="">
+                    Todas categorias
+                </option>
+
+                {% for cat in ["Hardware", "Software", "Acesso", "Rede", "Telefonia", "Outro"] %}
+
+                <option
+                    value="{{ cat }}"
+                    {% if categoria == cat %}
+                    selected
+                    {% endif %}
+                >
+                    {{ cat }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <select name="tecnico">
+
+                <option value="">
+                    Todos técnicos
+                </option>
+
+                {% for t in tecnicos %}
+
+                <option
+                    value="{{ t.nome }}"
+                    {% if tecnico == t.nome %}
+                    selected
+                    {% endif %}
+                >
+                    {{ t.nome }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-primary">
+                Filtrar
+            </button>
+
+            <a
+                href="/atendimentos"
+                class="btn-warning"
+            >
+                Limpar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Registros de atendimentos
+    </h2>
+
+    <div class="tabela-container">
+
+        <table class="tabela">
+
+            <thead>
+
+                <tr>
+                    <th>Data</th>
+                    <th>Nome</th>
+                    <th>Setor</th>
+                    <th>Problema</th>
+                    <th>Solução</th>
+                    <th>Categoria</th>
+                    <th>Técnico</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for a in atendimentos %}
+
+                <tr>
+
+                    <td>
+                        {{ a.data_atendimento.strftime("%d/%m/%Y") }}
+                    </td>
+
+                    <td>
+                        {{ a.nome_colaborador }}
+                    </td>
+
+                    <td>
+                        {{ a.setor }}
+                    </td>
+
+                    <td>
+                        {{ a.problema }}
+                    </td>
+
+                    <td>
+                        {{ a.solucao }}
+                    </td>
+
+                    <td>
+                        {{ a.categoria }}
+                    </td>
+
+                    <td>
+                        {{ a.tecnico }}
+                    </td>
+
+                    <td>
+
+                        <div class="acoes-atendimento">
+
+                            <a
+                                href="/editar_atendimento/{{ a.id }}"
+                                class="btn-acao-editar"
+                            >
+                                Editar
+                            </a>
+
+                            <a
+                                href="/excluir_atendimento/{{ a.id }}"
+                                class="btn-acao-excluir"
+                                title="Excluir atendimento"
+                                onclick="return confirm('Excluir este atendimento?')"
+                            >
+                                🗑
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="8">
+                        Nenhum atendimento encontrado.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

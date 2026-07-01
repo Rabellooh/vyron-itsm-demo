@@ -1,0 +1,447 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Estoque TI
+</h1>
+
+<div class="resumo-operacional">
+
+    <div class="card-resumo">
+        <span>Itens cadastrados</span>
+        <h2>{{ total_itens }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Total de unidades</span>
+        <h2>{{ total_unidades }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Estoque baixo</span>
+        <h2>{{ itens_baixo }}</h2>
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Novo item
+    </h2>
+
+    <form
+        action="/novo_item_estoque"
+        method="POST"
+    >
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="item"
+                placeholder="Item. Ex: Mouse USB, Notebook, Teclado..."
+                required
+            >
+
+            <input
+                type="text"
+                name="categoria"
+                placeholder="Categoria. Ex: Periféricos, Cabos, Máquinas..."
+            >
+
+            <input
+                type="text"
+                name="patrimonio"
+                placeholder="Patrimônio / ID. Opcional"
+            >
+
+            <select name="estado">
+
+                <option value="Disponível">
+                    Disponível
+                </option>
+
+                <option value="Em uso">
+                    Em uso
+                </option>
+
+                <option value="Defeito">
+                    Defeito
+                </option>
+
+                <option value="Descartado">
+                    Descartado
+                </option>
+
+            </select>
+
+            <input
+                type="text"
+                name="localizacao"
+                placeholder="Localização. Ex: Armário TI"
+            >
+
+            <input
+                type="number"
+                name="quantidade"
+                placeholder="Quantidade inicial"
+                min="0"
+                value="0"
+            >
+
+            <input
+                type="number"
+                name="minimo"
+                placeholder="Estoque mínimo"
+                min="0"
+                value="1"
+            >
+
+            <input
+                type="text"
+                name="observacao"
+                placeholder="Observação"
+            >
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-success">
+                Adicionar item
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Itens em estoque
+    </h2>
+
+    <div class="tabela-container">
+
+        <table class="tabela tabela-estoque">
+
+            <thead>
+
+                <tr>
+                    <th>Item</th>
+                    <th>Categoria</th>
+                    <th>Patrimônio</th>
+                    <th>Qtd</th>
+                    <th>Mínimo</th>
+                    <th>Estado</th>
+                    <th>Estoque</th>
+                    <th>Localização</th>
+                    <th>Movimentar</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in itens %}
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            {{ item.item }}
+                        </strong>
+
+                        {% if item.observacao %}
+
+                        <br>
+
+                        <small class="texto-secundario">
+                            {{ item.observacao }}
+                        </small>
+
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ item.categoria or "-" }}
+                    </td>
+
+                    <td>
+                        {{ item.patrimonio or "-" }}
+                    </td>
+
+                    <td>
+                        {{ item.quantidade }}
+                    </td>
+
+                    <td>
+                        {{ item.minimo }}
+                    </td>
+
+                    <td>
+
+                        {% if item.estado == "Disponível" %}
+
+                            <span class="badge resolvido">
+                                Disponível
+                            </span>
+
+                        {% elif item.estado == "Em uso" %}
+
+                            <span class="badge andamento">
+                                Em uso
+                            </span>
+
+                        {% elif item.estado == "Defeito" %}
+
+                            <span class="badge aberto">
+                                Defeito
+                            </span>
+
+                        {% elif item.estado == "Descartado" %}
+
+                            <span class="badge resolvido">
+                                Descartado
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge resolvido">
+                                {{ item.estado or "Disponível" }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if item.quantidade <= item.minimo %}
+
+                            <span class="badge aberto">
+                                Baixo
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge resolvido">
+                                OK
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ item.localizacao or "-" }}
+                    </td>
+
+                    <td>
+
+                        <form
+                            action="/movimentar_estoque"
+                            method="POST"
+                            class="estoque-mov-form"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="item_id"
+                                value="{{ item.id }}"
+                            >
+
+                            <select name="tipo" required>
+
+                                <option value="entrada">
+                                    Entrada
+                                </option>
+
+                                <option value="saida">
+                                    Saída
+                                </option>
+
+                            </select>
+
+                            <input
+                                type="number"
+                                name="quantidade"
+                                min="1"
+                                value="1"
+                                required
+                            >
+
+                            <input
+                                type="text"
+                                name="usuario"
+                                placeholder="Destino/Responsável"
+                            >
+
+                            <input
+                                type="text"
+                                name="observacao"
+                                placeholder="Observação"
+                            >
+
+                            <button class="btn-primary">
+                                Registrar
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                    <td>
+
+                        <div class="estoque-acoes">
+
+                            <a
+                                href="/editar_item_estoque/{{ item.id }}"
+                                class="btn-mini btn-mini-edit"
+                            >
+                                Editar
+                            </a>
+
+                            <a
+                                href="/excluir_item_estoque/{{ item.id }}"
+                                class="btn-delete-icon"
+                                title="Excluir item"
+                                onclick="return confirm('Excluir este item do estoque?')"
+                            >
+                                🗑
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="10">
+                        Nenhum item cadastrado no estoque.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        Últimas movimentações
+    </h2>
+
+    <div class="tabela-container">
+
+        <table class="tabela tabela-estoque-movimentacoes">
+
+            <thead>
+
+                <tr>
+                    <th>Data</th>
+                    <th>Item</th>
+                    <th>Tipo</th>
+                    <th>Qtd</th>
+                    <th>Responsável/Destino</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for mov in movimentacoes %}
+
+                <tr>
+
+                    <td>
+                        {{ mov.criado_em }}
+                    </td>
+
+                    <td>
+                        {{ mov.item }}
+                    </td>
+
+                    <td>
+
+                        {% if mov.tipo == "entrada" %}
+
+                            <span class="badge resolvido">
+                                Entrada
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge andamento">
+                                Saída
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+                        {{ mov.quantidade }}
+                    </td>
+
+                    <td>
+                        {{ mov.usuario or "-" }}
+                    </td>
+
+                    <td>
+                        {{ mov.observacao or "-" }}
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="/desfazer_movimentacao_estoque/{{ mov.id }}"
+                            class="btn-mini btn-mini-delete"
+                            onclick="return confirm('Desfazer esta movimentação? A quantidade do estoque será revertida.')"
+                        >
+                            Desfazer
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="7">
+                        Nenhuma movimentação registrada.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

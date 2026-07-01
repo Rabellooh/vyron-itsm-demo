@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Editar Usuário
+</h1>
+
+<div class="card">
+
+    <form method="POST">
+
+        <label>Nome</label>
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ usuario_db.nome }}"
+            required
+        >
+
+        <label>Senha</label>
+
+        <input
+            type="text"
+            name="senha"
+            <input
+                type="password"
+                name="senha"
+                placeholder="Deixe em branco para manter a senha atual"
+            >
+            required
+        >
+
+        <label>Tipo</label>
+
+        <select name="tipo">
+
+            <option
+                value="colaborador"
+                {% if usuario_db.tipo == "colaborador" %}
+                selected
+                {% endif %}
+            >
+                Colaborador
+            </option>
+
+            <option
+                value="administracao"
+                {% if usuario_db.tipo == "administracao" %}
+                selected
+                {% endif %}
+            >
+                Administração
+            </option>
+
+            <option
+                value="ti"
+                {% if usuario_db.tipo == "ti" %}
+                selected
+                {% endif %}
+            >
+                TI
+            </option>
+
+        </select>
+
+        <label>Setor</label>
+
+        <input
+            type="text"
+            name="setor"
+            value="{{ usuario_db.setor }}"
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="{{ usuario_db.email }}"
+        >
+
+        <label>Status</label>
+
+        <select name="ativo">
+
+            <option
+                value="true"
+                {% if usuario_db.ativo %}
+                selected
+                {% endif %}
+            >
+                Ativo
+            </option>
+
+            <option
+                value="false"
+                {% if not usuario_db.ativo %}
+                selected
+                {% endif %}
+            >
+                Inativo
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button
+            type="submit"
+            class="btn-success"
+        >
+            Salvar
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

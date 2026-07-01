@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Editar Atendimento
+</h1>
+
+<div class="card">
+
+    <form method="POST">
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="nome_colaborador"
+                value="{{ atendimento.nome_colaborador }}"
+                placeholder="Nome do colaborador"
+                required
+            >
+
+            <input
+                type="text"
+                name="setor"
+                value="{{ atendimento.setor }}"
+                placeholder="Setor"
+            >
+
+            <input
+                type="date"
+                name="data_atendimento"
+                value="{{ atendimento.data_atendimento }}"
+                required
+            >
+
+            <select name="categoria">
+
+                {% for cat in ["Hardware", "Software", "Acesso", "Rede", "Telefonia", "Outro"] %}
+
+                <option
+                    value="{{ cat }}"
+                    {% if atendimento.categoria == cat %}
+                    selected
+                    {% endif %}
+                >
+                    {{ cat }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <select name="tecnico">
+
+                <option value="">
+                    Técnico responsável
+                </option>
+
+                {% for t in tecnicos %}
+
+                <option
+                    value="{{ t.nome }}"
+                    {% if atendimento.tecnico == t.nome %}
+                    selected
+                    {% endif %}
+                >
+                    {{ t.nome }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <input
+                type="text"
+                name="problema"
+                value="{{ atendimento.problema }}"
+                placeholder="Problema"
+                required
+            >
+
+            <input
+                type="text"
+                name="solucao"
+                value="{{ atendimento.solucao }}"
+                placeholder="Solução aplicada"
+            >
+
+        </div>
+
+        <div class="estoque-form-acoes">
+
+            <button class="btn-success">
+                Salvar alterações
+            </button>
+
+            <a
+                href="/atendimentos"
+                class="btn-warning"
+            >
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

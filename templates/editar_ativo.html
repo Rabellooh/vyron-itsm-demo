@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+
+    Editar Ativo
+
+</h1>
+
+<div class="card">
+
+    <form method="POST">
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="marca"
+                value="{{ ativo.marca }}"
+                placeholder="Marca"
+            >
+
+            <input
+                type="text"
+                name="modelo"
+                value="{{ ativo.modelo }}"
+                placeholder="Modelo"
+            >
+
+            <input
+                type="text"
+                name="sistema_operacional"
+                value="{{ ativo.sistema_operacional }}"
+                placeholder="Sistema"
+            >
+
+            <input
+                type="text"
+                name="memoria_ram"
+                value="{{ ativo.memoria_ram }}"
+                placeholder="RAM"
+            >
+
+            <input
+                type="text"
+                name="armazenamento"
+                value="{{ ativo.armazenamento }}"
+                placeholder="Armazenamento"
+            >
+
+            <input
+                type="text"
+                name="usuario_atual"
+                value="{{ ativo.usuario_atual }}"
+                placeholder="Usuário"
+            >
+
+            <input
+                type="text"
+                name="setor"
+                value="{{ ativo.setor }}"
+                placeholder="Setor"
+            >
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn-salvar"
+        >
+
+            Salvar Alterações
+
+        </button>
+        <a
+            href="/excluir_ativo/{{ ativo.id }}"
+            class="btn-danger"
+            onclick="return confirm('Tem certeza que deseja excluir este ativo?')"
+        >
+            Excluir Ativo
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

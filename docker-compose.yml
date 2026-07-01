@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    container_name: vyron_demo_web
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:17
+    container_name: vyron_demo_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vyron_demo
+    ports:
+      - "5433:5432"
+    volumes:
+      - vyron_demo_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  vyron_demo_pgdata:

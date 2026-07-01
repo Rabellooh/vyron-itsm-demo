@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+
+    Novo Ativo
+
+</h1>
+
+<div class="card">
+
+    <form method="POST">
+
+        <div class="grid-form">
+
+            <input
+                type="text"
+                name="id_maquina"
+                placeholder="ID Máquina (Ex: D19)"
+                required
+            >
+
+            <input
+                type="text"
+                name="marca"
+                placeholder="Marca"
+                required
+            >
+
+            <input
+                type="text"
+                name="modelo"
+                placeholder="Modelo"
+                required
+            >
+
+            <input
+                type="text"
+                name="sistema_operacional"
+                placeholder="Sistema Operacional"
+            >
+
+            <input
+                type="text"
+                name="memoria_ram"
+                placeholder="RAM (Ex: 8GB RAM)"
+            >
+
+            <input
+                type="text"
+                name="armazenamento"
+                placeholder="Armazenamento (Ex: 256GB SSD)"
+            >
+
+            <input
+                type="text"
+                name="usuario_atual"
+                placeholder="Usuário Atual"
+            >
+
+            <select
+                name="setor"
+                required
+            >
+
+                <option value="">
+                    Selecionar setor
+                </option>
+
+                <option value="BackOffice">
+                    BackOffice
+                </option>
+
+                <option value="Hunter">
+                    Hunter
+                </option>
+
+                <option value="BL">
+                    BL
+                </option>
+
+                <option value="Farmer">
+                    Farmer
+                </option>
+
+                <option value="PÓS">
+                    PÓS
+                </option>
+
+                <option value="TI">
+                    TI
+                </option>
+
+                <option value="ADMIN">
+                    ADMIN
+                </option>
+
+            </select>
+
+        </div>
+
+        <div
+            style="
+                display:flex;
+                gap:12px;
+                margin-top:24px;
+                flex-wrap:wrap;
+            "
+        >
+
+            <button
+                type="submit"
+                class="btn-salvar"
+            >
+
+                Salvar Ativo
+
+            </button>
+
+            <a
+                href="/inventario"
+                class="btn-secondary"
+            >
+
+                Cancelar
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

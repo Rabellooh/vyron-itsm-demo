@@ -1,0 +1,96 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    min-height:100%;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:
+    radial-gradient(
+        circle at 18% 35%,
+        rgba(20,184,216,.28),
+        transparent 32%
+    ),
+    radial-gradient(
+        circle at 78% 18%,
+        rgba(37,99,235,.28),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 95% 80%,
+        rgba(56,189,248,.16),
+        transparent 28%
+    ),
+    linear-gradient(
+        135deg,
+        #030712,
+        #071426 45%,
+        #081120
+    );
+
+    color:var(--text);
+
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+}
+
+input,
+textarea,
+select{
+    font-family:'Inter',sans-serif;
+}
+.titulo{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:24px;
+
+    letter-spacing:-1px;
+}
+
+h2{
+
+    font-size:22px;
+
+    margin-bottom:18px;
+
+    font-weight:700;
+}
+.app-background{
+
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+    linear-gradient(
+        120deg,
+        rgba(255,255,255,.025),
+        transparent 35%,
+        rgba(56,213,255,.035)
+    );
+}
+
+::selection{
+    background:rgba(56,213,255,.35);
+}

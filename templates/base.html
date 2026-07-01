@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#071426">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Vyron ITSM
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inventario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/kanban.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/usuarios.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mapas.css') }}">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+<script>
+
+function toggleNotificacoes(){
+
+    const dropdown =
+        document.getElementById("notificacaoDropdown");
+
+    dropdown.classList.toggle("ativo");
+
+}
+
+document.addEventListener("click", function(event){
+
+    const wrapper =
+        document.querySelector(".notificacao-wrapper");
+
+    if(wrapper && !wrapper.contains(event.target)){
+
+        document
+        .getElementById("notificacaoDropdown")
+        .classList.remove("ativo");
+
+    }
+
+});
+
+</script>
+
+<body>
+    <div class="mobile-topbar">
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            onclick="toggleMenuMobile()"
+        >
+            ☰
+        </button>
+
+        <span>
+            VYRON
+        </span>
+
+    </div>
+
+    <div class="app-background"></div>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar" id="sidebarMobile">
+
+            <div class="brand-card">
+
+                <div class="vyron-mark">
+                    <span>V</span>
+                </div>
+
+                <h1>
+                    VYRON
+                </h1>
+
+                <p>
+                    ITSM Simplificado
+                </p>
+
+            </div>
+
+            <nav class="menu">
+
+                <div class="menu-grupo">
+
+                    <span class="menu-titulo">
+                        OPERACIONAL
+                    </span>
+
+                    <a href="/" class="menu-link">
+                        <span class="menu-icone">▦</span>
+                        Dashboard
+                    </a>
+
+                    <a href="/chamados" class="menu-link">
+                        <span class="menu-icone">☏</span>
+                        Chamados
+                    </a>
+
+                    {% if usuario.tipo == "ti" %}
+
+                    <a href="/tarefas" class="menu-link">
+                        <span class="menu-icone">☑</span>
+                        Tarefas TI
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                {% if usuario.tipo in ["ti", "administracao"] %}
+
+                <div class="menu-grupo">
+
+                    <span class="menu-titulo">
+                        GESTÃO
+                    </span>
+
+                    <a href="/inventario" class="menu-link">
+                        <span class="menu-icone">▣</span>
+                        Inventário
+                    </a>
+                    {% if usuario.tipo == "ti" %}
+
+                        <a href="/estoque" class="menu-link">
+                            <span class="menu-icone">▧</span>
+                            Estoque TI
+                        </a>
+
+                    {% endif %}
+                    {% if usuario.tipo == "ti" %}
+                        <a href="/atendimentos" class="menu-link">
+                            <span class="menu-icone">▥</span>
+                            Atendimentos TI
+                        </a>
+                    {% endif %}
+                    {% if usuario.tipo == "ti" %}
+
+                    <a href="/usuarios" class="menu-link">
+                        <span class="menu-icone">♙</span>
+                        Usuários
+                    </a>
+
+                    <a href="/historico" class="menu-link">
+                        <span class="menu-icone">▤</span>
+                        Relatórios
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                {% endif %}
+
+                {% if usuario.tipo in ["ti", "administracao"] %}
+
+                <div class="menu-grupo">
+
+                    <span class="menu-titulo">
+                        MAPAS
+                    </span>
+
+                    <a href="/mapa_hunter" class="menu-link">
+                        <span class="menu-icone">⌖</span>
+                        Mapa Hunter
+                    </a>
+
+                    <a href="/mapa_bl" class="menu-link">
+                        <span class="menu-icone">⌬</span>
+                        Mapa BL
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <a
+                    href="/logout"
+                    class="menu-sair"
+                >
+                    Sair
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- CONTEÚDO -->
+
+        <main class="conteudo">
+
+            <header class="topbar">
+
+                <div class="topbar-esquerda">
+
+                    <h3>
+                        • Sistema Interno TC TELECOM
+                    </h3>
+
+                    <span>
+                        Ambiente Corporativo
+                    </span>
+
+                </div>
+
+                <div class="topbar-direita">
+
+                    <div class="acoes-topbar">
+
+                        <button
+                            onclick="window.history.back()"
+                            class="topbar-btn"
+                        >
+                            ← Voltar
+                        </button>
+
+                        <a
+                            href="/"
+                            class="topbar-btn"
+                        >
+                            Dashboard
+                        </a>
+
+                        <button
+                            onclick="location.reload()"
+                            class="topbar-btn"
+                        >
+                            Atualizar
+                        </button>
+
+                    </div>
+
+                    <div class="usuario-box">
+
+                        <div class="avatar-user">
+
+                            {{ usuario.nome[0] }}
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                {{ usuario.nome }}
+                            </strong>
+
+                            <small>
+                                {{ usuario.tipo }} • {{ usuario.setor or "Sem setor" }}
+                            </small>
+
+                        </div>
+
+                        <div class="notificacao-wrapper">
+
+                            <button
+                                type="button"
+                                class="notificacao-btn"
+                                onclick="toggleNotificacoes()"
+                            >
+                                🔔
+
+                                {% if total_notificacoes and total_notificacoes > 0 %}
+                                <span class="notificacao-badge">
+                                    {{ total_notificacoes }}
+                                </span>
+                                {% endif %}
+                            </button>
+
+                            <div
+                                class="notificacao-dropdown"
+                                id="notificacaoDropdown"
+                            >
+
+                                <div class="notificacao-header">
+
+                                    <strong>
+                                        Notificações
+                                    </strong>
+
+                                    {% if notificacoes_topo %}
+
+                                    <a
+                                        href="/limpar_notificacoes"
+                                        class="limpar-notificacoes"
+                                        onclick="return confirm('Apagar todas as notificações?')"
+                                    >
+                                        Limpar tudo
+                                    </a>
+
+                                    {% endif %}
+
+                                </div>
+
+                                {% if notificacoes_topo %}
+
+                                    {% for n in notificacoes_topo %}
+
+                                    <div class="notificacao-item-wrapper">
+
+                                        <a
+                                            href="/notificacao/{{ n.id }}?link={{ n.link }}"
+                                            class="notificacao-item {% if not n.lida %}nao-lida{% endif %}"
+                                        >
+
+                                            <strong>
+                                                {{ n.titulo }}
+                                            </strong>
+
+                                            <span>
+                                                {{ n.mensagem }}
+                                            </span>
+
+                                        </a>
+
+                                        <a
+                                            href="/excluir_notificacao/{{ n.id }}"
+                                            class="notificacao-excluir"
+                                            title="Excluir notificação"
+                                            onclick="event.stopPropagation(); return confirm('Excluir esta notificação?')"
+                                        >
+                                            ×
+                                        </a>
+
+                                    </div>
+
+                                    {% endfor %}
+
+                                {% else %}
+
+                                    <div class="notificacao-vazia">
+                                        Nenhuma notificação.
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+            {% with messages =
+            get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    <div class="flash-container">
+
+                        {% for categoria, mensagem in messages %}
+
+                            <div class="alert {{ categoria }}">
+
+                                {{ mensagem }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+            <section class="pagina">
+
+                {% block content %}
+                {% endblock %}
+
+            </section>
+
+        </main>
+
+    </div>
+    <script>
+
+    function toggleMenuMobile(){
+
+        const sidebar =
+            document.getElementById("sidebarMobile");
+
+        const overlay =
+            document.getElementById("mobileOverlay");
+
+        const botao =
+            document.getElementById("mobileMenuBtn");
+
+        sidebar.classList.toggle("sidebar-aberta");
+        overlay.classList.toggle("ativo");
+
+        if(sidebar.classList.contains("sidebar-aberta")){
+            botao.innerHTML = "×";
+        }else{
+            botao.innerHTML = "☰";
+        }
+
+    }
+
+    function fecharMenuMobile(){
+
+        const sidebar =
+            document.getElementById("sidebarMobile");
+
+        const overlay =
+            document.getElementById("mobileOverlay");
+
+        const botao =
+            document.getElementById("mobileMenuBtn");
+
+        sidebar.classList.remove("sidebar-aberta");
+        overlay.classList.remove("ativo");
+        botao.innerHTML = "☰";
+
+    }
+
+    </script>
+    <script>
+        if("serviceWorker" in navigator){
+            navigator.serviceWorker.register("/static/service-worker.js");
+        }
+    </script>
+</body>
+
+</html>

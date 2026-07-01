@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        TC Telecom • ITSM Simplificado
+    </title>
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-background"></div>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <div class="login-topo">
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    class="logo-tc"
+                    alt="TC Telecom"
+                >
+
+                <h1>
+                    Vyron
+                </h1>
+
+                <p class="subtitulo-login">
+                    TC Telecom • ITSM Simplificado
+                </p>
+
+            </div>
+
+            {% if erro %}
+
+            <div id="erro-login" class="erro-login">
+
+                {{ erro }}
+
+            </div>
+
+            {% endif %}
+
+            <form method="POST">
+
+                <div class="campo">
+
+                    <label>
+                        Usuário
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nome"
+                        placeholder="Digite seu usuário"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label>
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+                <button class="btn-login">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+
+                <span>
+                    Sistema interno • TC Telecom
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

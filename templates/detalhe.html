@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="detalhe-header">
+
+    <div>
+
+        <h1 class="titulo">
+            Chamado #{{ chamado.id }}
+        </h1>
+
+        {% if chamado.origem %}
+
+        <span class="origem-chamado">
+            {{ chamado.origem }}
+        </span>
+
+        {% endif %}
+
+    </div>
+
+    <div>
+
+        {% if chamado.status == "aberto" %}
+            <span class="badge aberto">Aberto</span>
+        {% elif chamado.status == "em_andamento" %}
+            <span class="badge andamento">Em andamento</span>
+        {% else %}
+            <span class="badge resolvido">Resolvido</span>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="card detalhe-painel">
+
+    <h2>
+        Resumo do chamado
+    </h2>
+
+    <div class="detalhe-grid">
+
+        <div class="detalhe-info">
+            <span>Colaborador</span>
+            <strong>{{ chamado.usuario }}</strong>
+        </div>
+
+        <div class="detalhe-info">
+            <span>Setor</span>
+            <strong>{{ chamado.setor }}</strong>
+        </div>
+
+        <div class="detalhe-info">
+            <span>Máquina</span>
+            <strong>{{ chamado.maquina }}</strong>
+        </div>
+
+        <div class="detalhe-info">
+            <span>Técnicos</span>
+            <strong>
+                {% if tecnicos %}
+                    {{ tecnicos | join(", ") }}
+                {% else %}
+                    Nenhum técnico
+                {% endif %}
+            </strong>
+        </div>
+
+    </div>
+
+    <div class="detalhe-descricao">
+
+        <span>
+            Descrição
+        </span>
+
+        <p>
+            {{ chamado.descricao }}
+        </p>
+
+    </div>
+
+    {% if chamado.arquivo %}
+
+    <div class="detalhe-anexo">
+
+        <a
+            href="/uploads/{{ chamado.arquivo }}"
+            target="_blank"
+            class="btn-warning"
+        >
+            Abrir Arquivo Inicial
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% if session.usuario.tipo == "ti" %}
+
+<div class="card detalhe-painel">
+
+    <h2>
+        Completar / Corrigir informações
+    </h2>
+
+    <form
+        method="POST"
+        action="/editar_chamado/{{ chamado.id }}"
+    >
+
+        <div class="form-grid detalhe-form-grid">
+
+            <div>
+
+                <label>
+                    Colaborador
+                </label>
+
+                <input
+                    type="text"
+                    name="usuario"
+                    value="{{ chamado.usuario }}"
+                >
+
+            </div>
+
+            <div>
+
+                <label>
+                    Setor
+                </label>
+
+                <input
+                    type="text"
+                    name="setor"
+                    value="{{ chamado.setor }}"
+                >
+
+            </div>
+
+            <div>
+
+                <label>
+                    ID da Máquina
+                </label>
+
+                <input
+                    type="text"
+                    name="maquina"
+                    value="{{ chamado.maquina }}"
+                >
+
+            </div>
+
+            <div>
+
+                <label>
+                    Categoria
+                </label>
+
+                <select name="categoria">
+
+                    <option value="">
+                        Selecionar
+                    </option>
+
+                    <option
+                        value="Hardware"
+                        {% if chamado.categoria == "Hardware" %}
+                        selected
+                        {% endif %}
+                    >
+                        Hardware
+                    </option>
+
+                    <option
+                        value="Software"
+                        {% if chamado.categoria == "Software" %}
+                        selected
+                        {% endif %}
+                    >
+                        Software
+                    </option>
+
+                    <option
+                        value="Acesso"
+                        {% if chamado.categoria == "Acesso" %}
+                        selected
+                        {% endif %}
+                    >
+                        Acesso
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="detalhe-form-full">
+
+                <label>
+                    Solução Aplicada
+                </label>
+
+                <textarea
+                    name="solucao"
+                    class="solucao-input"
+                    placeholder="Descreva a solução aplicada..."
+                >{{ chamado.solucao }}</textarea>
+
+            </div>
+
+        </div>
+
+        <button class="btn-success detalhe-btn-salvar">
+            Salvar Alterações
+        </button>
+
+    </form>
+
+</div>
+
+{% endif %}
+
+<div class="card chat-box detalhe-painel">
+
+    <h2>
+        Chat do Chamado
+    </h2>
+
+    <form
+        action="/mensagem/{{ chamado.id }}"
+        method="POST"
+        enctype="multipart/form-data"
+        class="chat-form"
+    >
+
+        <textarea
+            name="mensagem"
+            placeholder="Digite uma mensagem..."
+            class="solucao-input"
+        ></textarea>
+
+        <input
+            type="file"
+            name="arquivo"
+        >
+
+        <button class="btn-primary">
+            Enviar
+        </button>
+
+    </form>
+
+    <div class="mensagens">
+
+        {% for m in mensagens %}
+
+        <div class="mensagem">
+
+            <strong>
+                {{ m.usuario }}
+            </strong>
+
+            <p>
+                {{ m.mensagem }}
+            </p>
+
+            {% if m.arquivo %}
+
+            <a
+                href="/uploads/{{ m.arquivo }}"
+                target="_blank"
+                class="btn-warning pequeno"
+            >
+                Abrir Anexo
+            </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="acoes-detalhe detalhe-acoes-final">
+
+    {% if session.usuario.tipo == "ti" %}
+
+        <a
+            href="/assumir/{{ chamado.id }}"
+            class="btn-warning"
+        >
+            Assumir
+        </a>
+
+        <a
+            href="/finalizar/{{ chamado.id }}"
+            class="btn-success"
+        >
+            Finalizar
+        </a>
+
+    {% endif %}
+
+    <a
+        href="/excluir/{{ chamado.id }}"
+        class="btn-danger"
+    >
+        Excluir
+    </a>
+
+</div>
+
+{% endblock %}

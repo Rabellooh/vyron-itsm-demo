@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Confirmar Exclusão
+</h1>
+
+<div class="card card-exclusao">
+
+    <div class="icone-exclusao">
+
+        ⚠️
+
+    </div>
+
+    <h2>
+
+        Excluir Chamado #{{ chamado.id }}
+
+    </h2>
+
+    <p class="texto-exclusao">
+
+        Esta ação removerá permanentemente
+        o chamado do sistema.
+
+    </p>
+
+    <div class="dados-exclusao">
+
+        <span>
+
+            <small>
+                Colaborador
+            </small>
+
+            <strong>
+
+                {{ chamado.usuario }}
+
+            </strong>
+
+        </span>
+
+        <span>
+
+            <small>
+                Máquina
+            </small>
+
+            <strong>
+
+                {{ chamado.maquina }}
+
+            </strong>
+
+        </span>
+
+        <span>
+
+            <small>
+                Status
+            </small>
+
+            <strong>
+
+                {{ chamado.status }}
+
+            </strong>
+
+        </span>
+
+    </div>
+
+    <div class="acoes-exclusao">
+
+        <form method="POST">
+
+            <button class="btn-danger">
+
+                Confirmar Exclusão
+
+            </button>
+
+        </form>
+
+        <a
+            href="/chamados"
+            class="btn-warning"
+        >
+
+            Cancelar
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

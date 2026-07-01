@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="pagina">
+
+    <h1 class="titulo">
+        Histórico da Máquina
+    </h1>
+
+    <!-- DADOS -->
+
+    <div class="grid">
+
+        <div class="card stat">
+
+            <span>ID Máquina</span>
+
+            <h2>
+                {{ ativo.id_maquina }}
+            </h2>
+
+        </div>
+
+        <div class="card stat">
+
+            <span>Modelo</span>
+
+            <h2>
+                {{ ativo.modelo }}
+            </h2>
+
+        </div>
+
+        <div class="card stat">
+
+            <span>Usuário Atual</span>
+
+            <h2>
+                {{ ativo.usuario_atual or "Sem usuário" }}
+            </h2>
+
+        </div>
+
+        <div class="card stat">
+
+            <span>Status</span>
+
+            <h2>
+                {{ ativo.status }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- INDICADORES -->
+
+    <div class="grid">
+
+        <div class="card stat">
+
+            <span>Total de Chamados</span>
+
+            <h1>
+                {{ total_chamados }}
+            </h1>
+
+        </div>
+
+        <div class="card stat">
+
+            <span>Chamados Abertos</span>
+
+            <h1 class="txt-aberto">
+                {{ chamados_abertos }}
+            </h1>
+
+        </div>
+
+        <div class="card stat">
+
+            <span>Finalizados</span>
+
+            <h1 class="txt-resolvido">
+                {{ chamados_finalizados }}
+            </h1>
+
+        </div>
+
+    </div>
+
+    <!-- CHAMADOS -->
+
+    <div class="card">
+
+        <h2 style="margin-bottom:20px;">
+            Histórico de Chamados
+        </h2>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Descrição</th>
+
+                        <th>Status</th>
+
+                        <th>Técnico</th>
+
+                        <th>Solução</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for chamado in chamados %}
+
+                    <tr>
+
+                        <td>
+                            #{{ chamado.id }}
+                        </td>
+
+                        <td>
+                            {{ chamado.descricao }}
+                        </td>
+
+                        <td>
+                            {{ chamado.status }}
+                        </td>
+
+                        <td>
+                            {{ chamado.tecnicos or "-" }}
+                        </td>
+
+                        <td>
+                            {{ chamado.solucao or "-" }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- MOVIMENTAÇÕES -->
+
+    <div class="card">
+
+        <h2 style="margin-bottom:20px;">
+            Histórico de Movimentações
+        </h2>
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Data</th>
+
+                        <th>Origem</th>
+
+                        <th>Destino</th>
+
+                        <th>Colaborador</th>
+
+                        <th>Responsável</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in movimentacoes %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ item.data_movimentacao.strftime('%d/%m/%Y %H:%M') }}
+
+                        </td>
+
+                        <td>
+                            {{ item.origem }}
+                        </td>
+
+                        <td>
+                            {{ item.destino }}
+                        </td>
+
+                        <td>
+                            {{ item.colaborador or "-" }}
+                        </td>
+
+                        <td>
+                            {{ item.usuario_responsavel }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

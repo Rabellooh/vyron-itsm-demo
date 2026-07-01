@@ -1,0 +1,465 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="kanban-header">
+
+    <div>
+
+        <h1 class="titulo-kanban">
+            Kanban TI
+        </h1>
+
+        <p class="subtitulo-kanban">
+            Controle interno operacional da equipe
+        </p>
+
+    </div>
+
+    <div class="kanban-stats">
+
+        <div class="stat-box">
+            <span>{{ pendentes|length }}</span>
+            <p>Pendentes</p>
+        </div>
+
+        <div class="stat-box">
+            <span>{{ andamento|length }}</span>
+            <p>Em andamento</p>
+        </div>
+
+        <div class="stat-box">
+            <span>{{ aguardando|length }}</span>
+            <p>Aguardando</p>
+        </div>
+
+        <div class="stat-box">
+            <span>{{ finalizadas|length }}</span>
+            <p>Finalizadas</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FORM NOVA TAREFA -->
+
+<div class="card kanban-form-card">
+
+    <form
+        method="POST"
+        action="/nova_tarefa"
+        class="form-grid-kanban"
+    >
+
+        <input
+            type="text"
+            name="titulo"
+            placeholder="Título da tarefa"
+            required
+        >
+
+        <input
+            type="text"
+            name="responsavel"
+            placeholder="Responsável"
+        >
+
+        <input
+            type="text"
+            name="setor"
+            placeholder="Setor"
+        >
+
+        <input
+            type="date"
+            name="prazo"
+        >
+
+        <select name="prioridade">
+
+            <option value="baixa">
+                🟢 Baixa
+            </option>
+
+            <option value="media">
+                🟡 Média
+            </option>
+
+            <option value="alta">
+                🔴 Alta
+            </option>
+
+            <option value="critica">
+                🚨 Crítica
+            </option>
+
+        </select>
+
+        <textarea
+            name="descricao"
+            placeholder="Descrição da tarefa"
+        ></textarea>
+
+        <button class="btn-primary btn-criar-task">
+            Criar tarefa
+        </button>
+
+    </form>
+
+</div>
+
+<!-- KANBAN -->
+
+<div class="kanban-carousel">
+
+    <button
+        type="button"
+        class="kanban-arrow kanban-arrow-left"
+        onclick="scrollKanban(-1)"
+    >
+        ‹
+    </button>
+
+    <div
+        class="kanban"
+        id="kanbanBoard"
+    >
+
+        <!-- PENDENTE -->
+
+        <div class="kanban-coluna">
+
+            <div class="kanban-topo">
+
+                <h2>Pendente</h2>
+
+                <span class="badge-coluna">
+                    {{ pendentes|length }}
+                </span>
+
+            </div>
+
+            {% for t in pendentes %}
+
+            <div class="task-card prioridade-{{ t.prioridade }}">
+
+                <div class="task-prioridade">
+                    {{ t.prioridade.upper() }}
+                </div>
+
+                <h3>{{ t.titulo }}</h3>
+
+                <p>{{ t.descricao }}</p>
+
+                <div class="task-info">
+
+                    <span>
+                        👤 {{ t.responsavel }}
+                    </span>
+
+                    <span>
+                        🏢 {{ t.setor }}
+                    </span>
+
+                    {% if t.prazo %}
+                    <span>
+                        📅 {{ t.prazo }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+                <div class="task-actions">
+
+                    <a
+                        href="/mover_tarefa/{{ t.id }}/andamento"
+                        class="btn-mini"
+                    >
+                        Iniciar
+                    </a>
+
+                    <a
+                        href="/editar_tarefa/{{ t.id }}"
+                        class="btn-mini"
+                    >
+                        Editar
+                    </a>
+
+                    <a
+                        href="/excluir_tarefa/{{ t.id }}"
+                        class="btn-mini btn-danger"
+                        onclick="return confirm('Excluir tarefa?')"
+                    >
+                        Excluir
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- EM ANDAMENTO -->
+
+        <div class="kanban-coluna">
+
+            <div class="kanban-topo">
+
+                <h2>Em andamento</h2>
+
+                <span class="badge-coluna">
+                    {{ andamento|length }}
+                </span>
+
+            </div>
+
+            {% for t in andamento %}
+
+            <div class="task-card prioridade-{{ t.prioridade }}">
+
+                <div class="task-prioridade">
+                    {{ t.prioridade.upper() }}
+                </div>
+
+                <h3>{{ t.titulo }}</h3>
+
+                <p>{{ t.descricao }}</p>
+
+                <div class="task-info">
+
+                    <span>
+                        👤 {{ t.responsavel }}
+                    </span>
+
+                    <span>
+                        🏢 {{ t.setor }}
+                    </span>
+
+                    {% if t.prazo %}
+                    <span>
+                        📅 {{ t.prazo }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+                <div class="task-actions">
+
+                    <a
+                        href="/mover_tarefa/{{ t.id }}/aguardando"
+                        class="btn-mini"
+                    >
+                        Aguardar
+                    </a>
+
+                    <a
+                        href="/editar_tarefa/{{ t.id }}"
+                        class="btn-mini"
+                    >
+                        Editar
+                    </a>
+
+                    <a
+                        href="/excluir_tarefa/{{ t.id }}"
+                        class="btn-mini btn-danger"
+                        onclick="return confirm('Excluir tarefa?')"
+                    >
+                        Excluir
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- AGUARDANDO -->
+
+        <div class="kanban-coluna">
+
+            <div class="kanban-topo">
+
+                <h2>Aguardando</h2>
+
+                <span class="badge-coluna">
+                    {{ aguardando|length }}
+                </span>
+
+            </div>
+
+            {% for t in aguardando %}
+
+            <div class="task-card prioridade-{{ t.prioridade }}">
+
+                <div class="task-prioridade">
+                    {{ t.prioridade.upper() }}
+                </div>
+
+                <h3>{{ t.titulo }}</h3>
+
+                <p>{{ t.descricao }}</p>
+
+                <div class="task-info">
+
+                    <span>
+                        👤 {{ t.responsavel }}
+                    </span>
+
+                    <span>
+                        🏢 {{ t.setor }}
+                    </span>
+
+                    {% if t.prazo %}
+                    <span>
+                        📅 {{ t.prazo }}
+                    </span>
+                    {% endif %}
+
+                </div>
+
+                <div class="task-actions">
+
+                    <a
+                        href="/mover_tarefa/{{ t.id }}/finalizado"
+                        class="btn-mini"
+                    >
+                        Finalizar
+                    </a>
+
+                    <a
+                        href="/editar_tarefa/{{ t.id }}"
+                        class="btn-mini"
+                    >
+                        Editar
+                    </a>
+
+                    <a
+                        href="/excluir_tarefa/{{ t.id }}"
+                        class="btn-mini btn-danger"
+                        onclick="return confirm('Excluir tarefa?')"
+                    >
+                        Excluir
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- FINALIZADO -->
+
+        <div class="kanban-coluna">
+
+            <div class="kanban-topo">
+
+                <h2>Finalizado</h2>
+
+                <span class="badge-coluna">
+                    {{ finalizadas|length }}
+                </span>
+
+            </div>
+
+            {% for t in finalizadas %}
+
+            <div class="task-card prioridade-{{ t.prioridade }}">
+
+                <div class="task-prioridade">
+                    {{ t.prioridade.upper() }}
+                </div>
+
+                <h3>{{ t.titulo }}</h3>
+
+                <p>{{ t.descricao }}</p>
+
+                <div class="task-info">
+
+                    <span>
+                        👤 {{ t.responsavel }}
+                    </span>
+
+                    <span>
+                        🏢 {{ t.setor }}
+                    </span>
+
+                </div>
+
+                <div class="task-actions">
+
+                    <a
+                        href="/editar_tarefa/{{ t.id }}"
+                        class="btn-mini"
+                    >
+                        Editar
+                    </a>
+
+                    <a
+                        href="/excluir_tarefa/{{ t.id }}"
+                        class="btn-mini btn-danger"
+                        onclick="return confirm('Excluir tarefa?')"
+                    >
+                        Excluir
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        class="kanban-arrow kanban-arrow-right"
+        onclick="scrollKanban(1)"
+    >
+        ›
+    </button>
+
+</div>
+
+<script>
+
+function scrollKanban(direction){
+
+    const board =
+        document.getElementById("kanbanBoard");
+
+    const column =
+        board.querySelector(".kanban-coluna");
+
+    if(!column){
+        return;
+    }
+
+    const gap = 20;
+
+    const scrollAmount =
+        column.offsetWidth + gap;
+
+    board.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+<script>
+setTimeout(function(){
+    window.location.reload();
+}, 30000);
+</script>
+
+{% endblock %}

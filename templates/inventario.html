@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="titulo">
+    Inventário de Máquinas
+</h1>
+
+<div class="resumo-operacional">
+
+    <div class="card-resumo">
+        <span>Total de ativos</span>
+        <h2>{{ total_ativos }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Setores</span>
+        <h2>{{ total_setores }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Colaboradores</span>
+        <h2>{{ total_colaboradores }}</h2>
+    </div>
+
+    <div class="card-resumo">
+        <span>Máquinas em chamado</span>
+        <h2>{{ maquinas_chamado }}</h2>
+    </div>
+
+</div>
+
+<div class="filtros-inventario">
+
+    <a href="/pesquisar_ativos?termo=backoffice" class="btn-setor">
+        Back Office
+    </a>
+
+    <a href="/pesquisar_ativos?termo=hunter" class="btn-setor">
+        Hunter
+    </a>
+
+    <a href="/pesquisar_ativos?termo=bl" class="btn-setor">
+        BL
+    </a>
+
+    <a href="/pesquisar_ativos?termo=farmer" class="btn-setor">
+        Farmer
+    </a>
+
+    <a href="/pesquisar_ativos?termo=pós" class="btn-setor">
+        PÓS
+    </a>
+
+    <a href="/pesquisar_ativos" class="btn-primary">
+        Pesquisa Avançada
+    </a>
+
+    <a
+        href="/novo_ativo"
+        class="btn-success"
+    >
+        + Novo Ativo
+    </a>
+    <a
+        href="{{ url_for('exportar_inventario_xlsx') }}"
+        class="btn-primary"
+    >
+        Exportar XLSX
+    </a>
+    <a
+        href="{{ url_for('exportar_inventario_rh_xlsx') }}"
+        class="btn-success"
+    >
+        Exportar RH
+    </a>
+</div>
+
+<div class="inventario-lista">
+
+    {% for a in ativos %}
+
+    <div class="ativo-card">
+
+        <div class="ativo-topo">
+
+            <div>
+
+                <span class="ativo-id">
+                    #{{ a.id_maquina }}
+                </span>
+
+                <h3>
+                    {{ a.marca }} {{ a.modelo }}
+                </h3>
+
+            </div>
+
+            <span class="ativo-setor">
+                {{ a.setor }}
+            </span>
+
+        </div>
+
+        <div class="ativo-info-grid">
+
+            <div>
+                <small>Sistema</small>
+                <strong>
+                    {{ a.sistema_operacional }}
+                </strong>
+            </div>
+
+            <div>
+                <small>RAM</small>
+                <strong>
+                    {{ a.memoria_ram }}
+                </strong>
+            </div>
+
+            <div>
+                <small>Armazenamento</small>
+                <strong>
+                    {{ a.armazenamento }}
+                </strong>
+            </div>
+
+            <div>
+                <small>Usuário</small>
+                <strong>
+                    {{ a.usuario_atual }}
+                </strong>
+            </div>
+
+        </div>
+
+        <div class="ativo-acoes">
+
+            <a
+                href="/editar_ativo/{{ a.id }}"
+                class="btn-mini btn-mini-edit"
+            >
+                Editar
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
