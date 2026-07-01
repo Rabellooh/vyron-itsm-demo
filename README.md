@@ -16,7 +16,7 @@ O sistema centraliza processos de suporte técnico, chamados, inventário de ati
 
 ## Preview
 
-![Dashboard operacional](docs/screenshots/dashboard.png)
+![Dashboard operacional](docs/screenshots/Dashboard.png)
 
 ---
 
