@@ -5,7 +5,7 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge\&logo=postgresql\&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
 ![Jinja2](https://img.shields.io/badge/Jinja2-B41717?style=for-the-badge\&logo=jinja\&logoColor=white)
-![Status](https://img.shields.io/badge/status-em%20Finalizado-green)
+![Status](https://img.shields.io/badge/style=for-the-badge\status-%20Finalizado-green)
 
 O **Vyron ITSM Demo** é uma plataforma demonstrativa de gestão interna de TI, desenvolvida com **Flask, PostgreSQL, Docker e Jinja2**.
 
